@@ -1,0 +1,142 @@
+/* LocationPickerModal.css */
+
+.lpm-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 26, 46, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: lpmFadeIn 0.2s ease-out;
+}
+
+@keyframes lpmFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.lpm-modal {
+  background: white;
+  border-radius: 24px;
+  padding: 48px 40px;
+  width: 100%;
+  max-width: 480px;
+  position: relative;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.2);
+  animation: lpmSlideUp 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes lpmSlideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.lpm-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: #f0f2f5;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 0.85rem;
+  color: #666;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.lpm-close:hover {
+  background: #e5e7eb;
+  color: #2c3e50;
+}
+
+.lpm-header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.lpm-icon {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+}
+
+.lpm-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: #2c3e50;
+  margin: 0 0 8px 0;
+}
+
+.lpm-subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin: 0;
+}
+
+.lpm-locations {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.lpm-location-btn {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 20px 24px;
+  background: #fafbfc;
+  border: 2px solid #e5e7eb;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: left;
+}
+
+.lpm-location-btn:hover {
+  border-color: #dc2626;
+  background: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(220, 38, 38, 0.12);
+}
+
+.lpm-location-pin {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.lpm-location-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #2c3e50;
+  flex: 1;
+}
+
+.lpm-location-arrow {
+  font-size: 1.1rem;
+  color: #dc2626;
+  transition: transform 0.3s ease;
+}
+
+.lpm-location-btn:hover .lpm-location-arrow {
+  transform: translateX(4px);
+}
+
+@media (max-width: 480px) {
+  .lpm-modal {
+    padding: 36px 24px;
+  }
+
+  .lpm-title {
+    font-size: 1.5rem;
+  }
+}

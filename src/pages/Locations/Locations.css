@@ -1,0 +1,460 @@
+/* LocationsPage.css */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+.locations-page {
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  background: linear-gradient(to bottom, #fafbfc 0%, #f0f2f5 100%);
+}
+
+/* Hero Section */
+.locations-hero {
+  position: relative;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #2c3e50 100%);
+  overflow: hidden;
+  padding: 40px 20px 120px;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 50%, rgba(220, 38, 38, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 70% 50%, rgba(220, 38, 38, 0.08) 0%, transparent 50%);
+}
+
+.locations-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 900px;
+  animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(220, 38, 38, 0.9);
+  color: white;
+  padding: 10px 24px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 20px rgba(220, 38, 38, 0.3);
+}
+
+.anchor-icon {
+  font-size: 1.2rem;
+}
+
+.locations-hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 900;
+  color: white;
+  margin: 0 0 24px 0;
+  line-height: 1.1;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.locations-hero-title .highlight {
+  color: #dc2626;
+}
+
+.locations-hero-subtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.hero-wave {
+  position: absolute;
+  bottom: -5px;
+  left: -10%;
+  width: 120%;
+  z-index: 2;
+  line-height: 0;
+}
+
+.hero-wave svg {
+  width: 100%;
+  height: 105px;
+  display: block;
+}
+
+/* Main Content */
+.locations-content-wrapper {
+  max-width: 1200px;
+  margin: -60px auto 0;
+  padding: 0 20px 60px;
+  position: relative;
+  z-index: 3;
+}
+
+/* Section Styling */
+.locations-section {
+  margin-bottom: 60px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.locations-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Locations Grid */
+.locations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 40px;
+}
+
+.location-card {
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+  animation: fadeInUp 0.6s ease-out both;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.location-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.15);
+}
+
+.location-map {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  border-bottom: 4px solid #dc2626;
+}
+
+.location-map iframe {
+  display: block;
+}
+
+.location-info {
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.location-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: #2c3e50;
+  margin: 0 0 32px 0;
+  line-height: 1.2;
+  min-height: 2.4rem;
+}
+
+.info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 32px;
+  flex: 1;
+}
+
+.info-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.info-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.info-text {
+  flex: 1;
+}
+
+.address-line,
+.hours-line,
+.fax-text {
+  font-size: 1rem;
+  color: #374151;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.address-line {
+  font-weight: 500;
+}
+
+.phone-link {
+  font-size: 1.1rem;
+  color: #dc2626;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.phone-link:hover {
+  color: #b91c1c;
+}
+
+.fax-text {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.hours-line {
+  margin-bottom: 4px;
+}
+
+.hours-line:last-child {
+  margin-bottom: 0;
+}
+
+/* Location Actions */
+.location-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.location-btn {
+  flex: 1;
+  min-width: 180px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 24px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.location-btn.primary {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+}
+
+.location-btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
+}
+
+.location-btn.secondary {
+  background: white;
+  color: #2c3e50;
+  border: 2px solid #2c3e50;
+}
+
+.location-btn.secondary:hover {
+  background: #2c3e50;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.btn-arrow {
+  transition: transform 0.3s ease;
+  font-size: 1.2rem;
+}
+
+.location-btn.secondary:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+/* CTA Section */
+.locations-cta-section {
+  position: relative;
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #2c3e50 100%);
+  border-radius: 24px;
+  overflow: hidden;
+  margin-top: 40px;
+}
+
+.cta-waves {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.wave-bg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 150px;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,50 Q300,20 600,50 T1200,50 L1200,120 L0,120 Z" fill="rgba(220,38,38,0.1)"/></svg>') repeat-x;
+  background-size: 1200px 120px;
+  animation: wave 20s linear infinite;
+}
+
+.wave-bg-1 {
+  opacity: 0.3;
+}
+
+.wave-bg-2 {
+  animation: wave 25s linear infinite reverse;
+  opacity: 0.2;
+  bottom: 20px;
+}
+
+@keyframes wave {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-1200px); }
+}
+
+.cta-content-wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.cta-icon-large {
+  font-size: 4rem;
+  margin-bottom: 24px;
+  filter: drop-shadow(0 4px 12px rgba(220, 38, 38, 0.5));
+  transition: transform 0.3s ease;
+}
+
+.cta-content-wrapper:hover .cta-icon-large {
+  transform: scale(1.1);
+}
+
+.cta-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 900;
+  color: white;
+  margin: 0 0 20px 0;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.cta-text {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.7;
+  margin: 0 0 32px 0;
+}
+
+.cta-btn-large {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 40px;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.cta-btn-large.primary {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  color: white;
+  box-shadow: 0 6px 24px rgba(220, 38, 38, 0.4);
+}
+
+.cta-btn-large.primary:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 10px 35px rgba(220, 38, 38, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .locations-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .locations-hero {
+    min-height: 350px;
+    padding: 30px 20px 100px;
+  }
+
+  .locations-content-wrapper {
+    margin-top: -40px;
+  }
+
+  .location-info {
+    padding: 32px 24px;
+  }
+
+  .location-name {
+    font-size: 1.6rem;
+  }
+
+  .location-actions {
+    flex-direction: column;
+  }
+
+  .location-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .locations-cta-section {
+    padding: 60px 20px;
+  }
+
+  .location-info {
+    padding: 24px 20px;
+  }
+
+  .info-item {
+    gap: 12px;
+  }
+
+  .info-icon {
+    font-size: 1.3rem;
+  }
+}
