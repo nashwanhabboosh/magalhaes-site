@@ -14,6 +14,7 @@ const ContactUs = () => {
   });
 
   const [formStatus, setFormStatus] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,26 +24,44 @@ const ContactUs = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you would typically send the form data to your backend
-    console.log('Form submitted:', formData);
-    setFormStatus('Thank you for contacting us! We will get back to you shortly.');
-    
-    // Reset form after submission
-    setTimeout(() => {
-      setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        location: '',
-        preferredContact: 'email',
-        message: '',
-        appointmentType: 'general'
+    setIsSubmitting(true);
+    setFormStatus('');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
       });
-      setFormStatus('');
-    }, 3000);
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
+      setFormStatus('Thank you for contacting us! We will get back to you shortly.');
+
+      // Reset form after a successful submission
+      setTimeout(() => {
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          location: '',
+          preferredContact: 'email',
+          message: '',
+          appointmentType: 'general'
+        });
+        setFormStatus('');
+      }, 5000);
+    } catch (err) {
+      console.error('Contact form submission error:', err);
+      setFormStatus('Sorry, something went wrong sending your message. Please call our office directly or try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -254,8 +273,8 @@ const ContactUs = () => {
               />
             </div>
 
-            <button type="submit" className="submit-button">
-              Send Message
+            <button type="submit" className="submit-button" disabled={isSubmitting}>
+              {isSubmitting ? 'Sending...' : 'Send Message'}
             </button>
           </form>
         </div>
