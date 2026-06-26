@@ -426,3 +426,8 @@
     font-size: 0.7rem; /* was 0.65rem */
   }
 }
+
+button.action-link {
+  font-weight: 600;
+  font-family: 'DM Sans', -apple-system, sans-serif;
+}

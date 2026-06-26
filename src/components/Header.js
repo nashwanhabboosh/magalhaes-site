@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import './Header.css';
 import Dropdown from './Dropdown';
 import AppointmentButton from './AppointmentButton';
+import PayInvoiceButton from './PayInvoiceButton';
 
 export default function Header() {
   const [activeNav, setActiveNav] = useState('');
@@ -103,7 +104,7 @@ export default function Header() {
             <div className="top-bar-actions">
               <a href="https://portal.drcontactlens.com" target="_blank" rel="noopener noreferrer" className="action-link">ORDER CONTACTS</a>
               <div className="divider"></div>
-              <a href="https://www.convergepay.com/hosted-payments/#!/payment-method" target="_blank" rel="noopener noreferrer" className="action-link">PAY INVOICE</a>
+              <PayInvoiceButton className="action-link"/>
               <div className="divider"></div>
               <AppointmentButton className="pay-online-btn" label="SCHEDULE APPOINTMENT" />
             </div>
