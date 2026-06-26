@@ -31,7 +31,13 @@ const LocationPickerModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   const handleLocationClick = (url) => {
-    window.open(url, '_blank');
+    // LensCrafters' scheduling site sits behind a WAF that rejects
+    // requests carrying a Referer header from an unrecognized domain
+    // (confirmed via testing: works with rel="noreferrer", fails without).
+    // window.open's third argument supports "noopener,noreferrer" as
+    // window features to suppress the referrer, matching the anchor-tag
+    // rel="noreferrer" behavior that fixed this in testing.
+    window.open(url, '_blank', 'noopener,noreferrer');
     onClose();
   };
 
@@ -39,13 +45,11 @@ const LocationPickerModal = ({ isOpen, onClose }) => {
     <div className="lpm-backdrop" onClick={onClose}>
       <div className="lpm-modal" onClick={(e) => e.stopPropagation()}>
         <button className="lpm-close" onClick={onClose} aria-label="Close">✕</button>
-
         <div className="lpm-header">
           <div className="lpm-icon">📅</div>
           <h2 className="lpm-title">Schedule an Appointment</h2>
           <p className="lpm-subtitle">Choose your preferred location</p>
         </div>
-
         <div className="lpm-locations">
           {locations.map((loc) => (
             <button
