@@ -3,15 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Doctors.css';
 import AppointmentButton from '../../components/AppointmentButton';
-
-import johnImg from '../../assets/Doctors/John.jpg';
-import domenicImg from '../../assets/Doctors/Domenic.jpg';
-import nicoleImg from '../../assets/Doctors/Nicole.jpg';
-import patriciaImg from '../../assets/Doctors/Patricia.jpg';
-import tinaImg from '../../assets/Doctors/Tina.jpg';
-import evanImg from '../../assets/Doctors/Evan.jpg';
-import michelleImg from '../../assets/Doctors/Michelle.jpg';
-import jacquelineImg from '../../assets/Doctors/Jacqueline.jpg';
+import { doctors } from '../../data/doctors';
 
 const DoctorsPage = () => {
   const [visibleSections, setVisibleSections] = useState([]);
@@ -36,17 +28,6 @@ const DoctorsPage = () => {
 
     return () => observers.forEach(observer => observer.disconnect());
   }, []);
-
-  const doctors = [
-    { name: 'Dr. John Magalhães', credentials: 'OD, FAAO', specialty: 'Managing Doctor, Medical Eye Care', summary: 'Nearly 26 years of clinical experience with a focus on the highest level of clinical care and technology. Board Certified and former President of the Massachusetts Society of Optometrists.', image: johnImg, slug: 'john-magalhaes', highlights: ['26 Years Experience', 'Board Certified', 'Medical Missions', 'Young OD of the Year 2012'] },
-    { name: 'Dr. Domenic Covello', credentials: 'OD', specialty: 'Comprehensive Family Eye Care', summary: 'Graduate of Pennsylvania College of Optometry with 10 years at Dr. Magalhães and Associates. Specialized training in retinal disease, cataracts, and glaucoma from VA Hospital internships.', image: domenicImg, slug: 'domenic-covello', highlights: ['10 Years at DMA', 'Beta Sigma Kappa', 'VA Hospital Training', 'Contact Lens Expert'] },
-    { name: 'Dr. Nicole Patricio', credentials: 'OD, MPH', specialty: 'Comprehensive Eye Care & Public Health', summary: 'Double doctorate in Optometry and Master in Public Health from MCPHS University. Dedicated to patient education and personalized care with community health focus.', image: nicoleImg, slug: 'nicole-patricio', highlights: ['MPH Degree', 'Community Health Focus', 'Patient Education', 'AAO Member'] },
-    { name: 'Dr. Patricia Garcia', credentials: 'OD', specialty: 'Post-Operative Care & Specialty Contact Lenses', summary: 'MCPHS graduate specializing in post-operative care of cataracts, LASIK, and glaucoma. Expert in specialty contact lenses and bilingual Spanish services.', image: patriciaImg, slug: 'patricia-garcia', highlights: ['Post-Op Specialist', 'Specialty Contact Lenses', 'Bilingual Spanish', 'Anterior Segment Expert'] },
-    { name: 'Dr. Tina Parker', credentials: 'OD', specialty: 'Pediatrics & Vision Rehabilitation', summary: "New England College of Optometry graduate with Pediatric Residency. Advanced expertise in children's vision care, dry eye management, and scleral contact lenses.", image: tinaImg, slug: 'tina-parker', highlights: ['Pediatric Residency', "Children's Vision", 'Dry Eye Management', 'Scleral Lenses'] },
-    { name: 'Dr. Evan Hosney', credentials: 'OD', specialty: 'Comprehensive Eye Care', summary: 'MCPHS University graduate with unique hands-on experience in optical lab work and patient care. Comprehensive understanding from fabrication to clinical practice.', image: evanImg, slug: 'evan-hosney', highlights: ['Lab Experience', 'Comprehensive Care', 'Contact Lenses', 'Sports Enthusiast'] },
-    { name: 'Dr. Michelle Vining', credentials: 'OD', specialty: 'Primary Eye Care & Ocular Disease', summary: 'Board-certified SUNY College of Optometry graduate. Specializes in diabetic retinopathy, macular degeneration, and dry eye. Fluent in Spanish.', image: michelleImg, slug: 'michelle-vining', highlights: ['Board Certified', 'Bilingual Spanish', 'Disease Management', 'Post-Surgical Care'] },
-    { name: 'Dr. Jacqueline Klombers', credentials: 'OD', specialty: 'Comprehensive Eye Care & Low Vision', summary: 'New England College of Optometry graduate with internship experience at Jamaica Plain VA Medical Center, Boston University Eye, and Dorchester Community Health Center. Experienced in comprehensive eye care and low vision exams.', image: jacquelineImg, slug: 'jacqueline-klombers', highlights: ['Low Vision Exams', 'VA Medical Training', 'Medical Optometry', 'NECO Graduate'] }
-  ];
 
   return (
     <div className="doctors-page">
@@ -102,12 +83,12 @@ const DoctorsPage = () => {
                   <div className="doctor-image-container">
                     <img
                       src={doctor.image}
-                      alt={`Headshot of ${doctor.name}`}
+                      alt={`Headshot of Dr. ${doctor.name}`}
                       className="doctor-image"
                     />
                   </div>
                   <div className="doctor-info">
-                    <h3 className="doctor-name">{doctor.name}</h3>
+                    <h3 className="doctor-name">Dr. {doctor.name}</h3>
                     <p className="doctor-credentials">{doctor.credentials}</p>
                     <p className="doctor-specialty">{doctor.specialty}</p>
                     <p className="doctor-summary">{doctor.summary}</p>
