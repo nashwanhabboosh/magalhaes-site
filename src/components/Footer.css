@@ -120,8 +120,8 @@
 }
 
 .footer .locations-grid {
-  display: grid !important;
-  grid-template-columns: 1fr 1fr !important;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 30px;
 }
 
@@ -300,7 +300,7 @@
     gap: 40px;
   }
   
-  .locations-grid {
+  .footer .locations-grid {
     gap: 20px;
   }
 }
@@ -311,7 +311,7 @@
     gap: 40px;
   }
   
-  .locations-grid {
+  .footer .locations-grid {
     grid-template-columns: 1fr 1fr;
     gap: 30px;
   }
@@ -328,7 +328,7 @@
     gap: 40px;
   }
   
-  .locations-grid {
+  .footer .locations-grid {
     grid-template-columns: 1fr;
     gap: 30px;
   }
@@ -370,7 +370,7 @@
     gap: 30px;
   }
   
-  .locations-grid {
+  .footer .locations-grid {
     gap: 25px;
   }
 
