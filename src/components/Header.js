@@ -25,7 +25,7 @@ export default function Header() {
   const dropdownItems = {
     DOCTORS: [
       'John Magalhaes', 'Domenic Covello', 'Nicole Patricio',
-      'Patricia Garcia', 'Tina Parker', 'Evan Hosney', 'Michelle Vining', 'Jacquelin Klombers'
+      'Patricia Garcia', 'Tina Parker', 'Evan Hosney', 'Michelle Vining', 'Jacqueline Klombers'
     ],
     SERVICES: [
       'Comprehensive Eye Exam', 'Eye Care', 'Contact Lenses',

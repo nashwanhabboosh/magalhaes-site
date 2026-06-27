@@ -77,7 +77,7 @@ function App() {
         <Route path="/doctors/tina-parker" element={<TinaParker />} />
         <Route path="/doctors/evan-hosney" element={<EvanHosney />} />
         <Route path="/doctors/michelle-vining" element={<MichelleVining />} />
-        <Route path="/doctors/jacquelin-klombers" element={<JacquelineKlombers />} />
+        <Route path="/doctors/jacqueline-klombers" element={<JacquelineKlombers />} />
 
         {/* Service Pages */}
         <Route path="/services/comprehensive-eye-exam" element={<EyeExam />} />
