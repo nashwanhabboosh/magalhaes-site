@@ -7,7 +7,6 @@ import {
   AccordionFAQ, 
   CTASection 
 } from '../../components/ServiceComponents';
-import '../../components/ServiceComponents.css';
 
 import img1 from '../../assets/stock_photos/eye-meds/Tyrvaya .jpg';
 import img2 from '../../assets/stock_photos/eye-meds/Miebo.jpg';
@@ -141,9 +140,6 @@ const NewEyecareMeds = () => {
           title="Experience Relief with Advanced Eyecare Medications"
           description="Ask your doctor about Tyrvaya, Miebo, or Xdemvy to find the right treatment for your dry eye or eyelid condition. We'll work with your insurance for coverage."
           buttonText="Schedule Consultation"
-          onButtonClick={() => {
-            console.log('Navigate to booking page');
-          }}
         />
       </div>
     </div>

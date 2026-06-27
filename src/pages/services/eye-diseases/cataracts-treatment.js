@@ -8,7 +8,6 @@ import {
   ProcedureTimeline,
   CTASection 
 } from '../../../components/ServiceComponents';
-import '../../../components/ServiceComponents.css';
 
 import img1 from '../../../assets/stock_photos/eye-diseases/cataracts/What_is_cataracts.jpg';
 import img2 from '../../../assets/stock_photos/eye-diseases/cataracts/Causes_cataracts.jpg';
@@ -186,9 +185,6 @@ const Cataracts = () => {
           title="Don't Let Cataracts Cloud Your Vision"
           description="If you're experiencing symptoms of cataracts or are ready to explore treatment options, schedule a comprehensive evaluation today."
           buttonText="Schedule Cataract Evaluation"
-          onButtonClick={() => {
-            console.log('Navigate to booking page');
-          }}
         />
       </div>
     </div>

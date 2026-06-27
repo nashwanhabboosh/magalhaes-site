@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { 
   ServiceHero
 } from '../../components/ServiceComponents';
-import '../../components/ServiceComponents.css';
 import './eye-diseases.css';
 import AppointmentButton from '../../components/AppointmentButton';
 

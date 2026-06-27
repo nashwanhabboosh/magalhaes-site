@@ -7,7 +7,6 @@ import {
   AccordionFAQ, 
   CTASection 
 } from '../../../components/ServiceComponents';
-import '../../../components/ServiceComponents.css';
 
 import img1 from '../../../assets/stock_photos/eye-diseases/pink-eye/pink-eye.jpg';
 import img2 from '../../../assets/stock_photos/eye-diseases/pink-eye/pink-eye-cause.jpg';
@@ -168,9 +167,6 @@ const PinkEye = () => {
           title="Experiencing Pink Eye Symptoms?"
           description="Don't wait - get proper diagnosis and treatment from our eye care specialists. Available at our North Attleboro, North Dartmouth, and Brockton locations."
           buttonText="Schedule Consultation"
-          onButtonClick={() => {
-            console.log('Navigate to booking page');
-          }}
         />
       </div>
     </div>

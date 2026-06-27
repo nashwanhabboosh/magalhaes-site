@@ -7,7 +7,6 @@ import {
   AccordionFAQ, 
   CTASection 
 } from '../../components/ServiceComponents';
-import '../../components/ServiceComponents.css';
 
 import img1 from '../../assets/stock_photos/vision-problems/glasses.jpg';
 import img2 from '../../assets/stock_photos/vision-problems/reading_glasses.jpg';
@@ -164,9 +163,6 @@ const VisionProblems = () => {
           title="Experiencing Vision Problems?"
           description="Don't let blurry vision or eye discomfort affect your quality of life. Schedule a comprehensive eye exam to get an accurate diagnosis and personalized treatment plan."
           buttonText="Schedule Your Exam"
-          onButtonClick={() => {
-            console.log('Navigate to booking page');
-          }}
         />
       </div>
     </div>

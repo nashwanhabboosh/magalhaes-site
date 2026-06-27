@@ -7,7 +7,6 @@ import {
   AccordionFAQ, 
   ProcedureTimeline
 } from '../../../components/ServiceComponents';
-import '../../../components/ServiceComponents.css';
 import AppointmentButton from '../../../components/AppointmentButton';
 import bioHeadsetImg from '../../../assets/practice/20250928_magalhaes_397.jpg';
 

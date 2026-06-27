@@ -7,7 +7,6 @@ import {
   AccordionFAQ, 
   CTASection 
 } from '../../components/ServiceComponents';
-import '../../components/ServiceComponents.css';
 
 import img1 from '../../assets/stock_photos/eye-care/Eye_Allergies.jpg';
 import img2 from '../../assets/stock_photos/eye-care/Kids_and_Vision.jpg';
@@ -152,9 +151,6 @@ const EyeCareServices = () => {
           title="Experience Personalized Eye Care"
           description="Whether you're dealing with allergies, need pediatric care, or want to protect your vision as you age, we're here to help."
           buttonText="Schedule an Appointment"
-          onButtonClick={() => {
-            console.log('Navigate to booking page');
-          }}
         />
       </div>
     </div>

@@ -8,7 +8,6 @@ import {
   ProcedureTimeline,
   CTASection 
 } from '../../../components/ServiceComponents';
-import '../../../components/ServiceComponents.css';
 
 import img1 from '../../../assets/stock_photos/eye-diseases/diabetic-eye-disease/Diabetic-eye-disease.jpg';
 import img2 from '../../../assets/stock_photos/eye-diseases/diabetic-eye-disease/Stages.jpg';
@@ -186,9 +185,6 @@ const DiabeticEyeDisease = () => {
           title="Protect Your Vision from Diabetes"
           description="If you have diabetes, regular eye exams are essential. Schedule your comprehensive dilated eye exam today to detect and prevent diabetic retinopathy."
           buttonText="Schedule Eye Exam"
-          onButtonClick={() => {
-            console.log('Navigate to booking page');
-          }}
         />
       </div>
     </div>

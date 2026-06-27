@@ -78,10 +78,6 @@ const HomePage = () => {
             Dr. Magalhaes<br />
             <span className="highlight">& Associates</span>
           </h1>
-          {/* <p className="home-hero-subtitle">
-            Family-owned practice serving the South Coast with comprehensive eye care 
-            and personalized service you can trust
-          </p> */}
           <div className="home-hero-actions">
             <AppointmentButton className="home-cta-primary">
               <span className="home-button-icon">📅</span>

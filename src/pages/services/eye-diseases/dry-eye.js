@@ -7,7 +7,6 @@ import {
   AccordionFAQ, 
   ProcedureTimeline
 } from '../../../components/ServiceComponents';
-import '../../../components/ServiceComponents.css';
 import AppointmentButton from '../../../components/AppointmentButton';
 
 import img1 from '../../../assets/stock_photos/eye-diseases/dry-eye/What_is_dry_eye.jpg';

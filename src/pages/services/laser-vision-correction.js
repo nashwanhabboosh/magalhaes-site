@@ -8,7 +8,6 @@ import {
   ProcedureTimeline,
   CTASection 
 } from '../../components/ServiceComponents';
-import '../../components/ServiceComponents.css';
 
 import img1 from '../../assets/stock_photos/laser-vision-correction/LASIK.jpg';
 import img2 from '../../assets/stock_photos/laser-vision-correction/Ideal_for_LASIK.jpg';
@@ -190,9 +189,6 @@ const LASIK = () => {
           title="Ready to Experience Life Without Glasses?"
           description="Schedule a consultation to find out if LASIK is right for you. Our experienced surgeons use the latest technology to help you achieve clear vision."
           buttonText="Schedule LASIK Consultation"
-          onButtonClick={() => {
-            console.log('Navigate to booking page');
-          }}
         />
       </div>
     </div>

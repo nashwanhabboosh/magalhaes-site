@@ -8,7 +8,6 @@ import {
   ProcedureTimeline,
   CTASection 
 } from '../../components/ServiceComponents';
-import '../../components/ServiceComponents.css';
 
 import img1 from '../../assets/stock_photos/optical-shop/Shop.jpg';
 import img2 from '../../assets/stock_photos/optical-shop/Lenses.jpg';
@@ -182,9 +181,6 @@ const OpticalShop = () => {
           title="Find Your Perfect Eyewear Today"
           description="Visit our optical shop to browse over 900 frame styles and experience personalized service from our expert staff. Backed by our 30-day satisfaction guarantee."
           buttonText="Visit Our Optical Shop"
-          onButtonClick={() => {
-            console.log('Navigate to optical shop or booking page');
-          }}
         />
       </div>
     </div>

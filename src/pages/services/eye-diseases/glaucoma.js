@@ -8,7 +8,6 @@ import {
   ProcedureTimeline,
   CTASection 
 } from '../../../components/ServiceComponents';
-import '../../../components/ServiceComponents.css';
 
 import img1 from '../../../assets/stock_photos/eye-diseases/glaucoma/glaucoma.jpg';
 import img2 from '../../../assets/stock_photos/eye-diseases/glaucoma/Risk.jpg';
@@ -226,9 +225,6 @@ const Glaucoma = () => {
           title="Protect Your Vision from Glaucoma"
           description="Early detection is key to preventing vision loss. Schedule your comprehensive glaucoma screening today with our state-of-the-art diagnostic equipment."
           buttonText="Schedule Glaucoma Screening"
-          onButtonClick={() => {
-            console.log('Navigate to booking page');
-          }}
         />
       </div>
     </div>

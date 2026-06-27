@@ -8,7 +8,6 @@ import {
   ProcedureTimeline,
   CTASection 
 } from '../../components/ServiceComponents';
-import '../../components/ServiceComponents.css';
 
 import img1 from '../../assets/practice/20250928_magalhaes_406.jpg';
 import img2 from '../../assets/practice/20250929_magalhaes_522.jpg';
@@ -182,9 +181,6 @@ const ContactLenses = () => {
           title="Ready to Experience the Freedom of Contact Lenses?"
           description="Our experienced doctors specialize in contact lens fittings, including advanced scleral lenses. Schedule your consultation today!"
           buttonText="Schedule Consultation"
-          onButtonClick={() => {
-            console.log('Navigate to booking page');
-          }}
         />
       </div>
     </div>
