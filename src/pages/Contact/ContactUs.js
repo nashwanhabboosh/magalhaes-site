@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './ContactUs.css';
+import { locations, formatPhone } from '../../data/locations';
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -76,66 +77,38 @@ const ContactUs = () => {
         <div className="contact-info-section">
           <div className="office-locations">
             <h2>Our Locations</h2>
-            
-            <div className="location-card">
-              <h3>North Attleboro Office</h3>
-              <div className="location-details">
-                <div className="detail-item">
-                  <span className="icon">📍</span>
-                  <div>
-                    <p>1250 S. Washington St</p>
-                    <p>Marshall</p>
-                    <p>North Attleborough, MA 02760</p>
-                  </div>
-                </div>
-                <div className="detail-item">
-                  <span className="icon">📞</span>
-                  <p>(508) 717-0425</p>
-                </div>
-                <div className="detail-item">
-                  <span className="icon">📠</span>
-                  <p>Fax: (508) 992-3239</p>
-                </div>
-                <div className="detail-item">
-                  <span className="icon">🕒</span>
-                  <div>
-                    <p><strong>Monday - Friday:</strong> 9:00 AM - 6:30 PM</p>
-                    <p><strong>Saturday:</strong> 9:00 AM - 4:30 PM</p>
-                    <p><strong>Sunday:</strong> 12:00 PM - 3:30 PM</p>
-                  </div>
-                </div>
-              </div>
-            </div>
 
-            <div className="location-card">
-              <h3>North Dartmouth Office</h3>
-              <div className="location-details">
-                <div className="detail-item">
-                  <span className="icon">📍</span>
-                  <div>
-                    <p>382 State Road</p>
-                    <p>Dartmouth Towne Center</p>
-                    <p>North Dartmouth, MA 02747</p>
+            {locations.map((location) => (
+              <div className="location-card" key={location.slug}>
+                <h3>{location.shortName} Office</h3>
+                <div className="location-details">
+                  <div className="detail-item">
+                    <span className="icon">📍</span>
+                    <div>
+                      <p>{location.address.street}</p>
+                      {location.address.street2 && <p>{location.address.street2}</p>}
+                      <p>{location.address.city}, {location.address.state} {location.address.zip}</p>
+                    </div>
                   </div>
-                </div>
-                <div className="detail-item">
-                  <span className="icon">📞</span>
-                  <p>(508) 717-0425</p>
-                </div>
-                <div className="detail-item">
-                  <span className="icon">📠</span>
-                  <p>Fax: (508) 992-3239</p>
-                </div>
-                <div className="detail-item">
-                  <span className="icon">🕒</span>
-                  <div>
-                    <p><strong>Monday - Friday:</strong> 9:00 AM - 6:30 PM</p>
-                    <p><strong>Saturday:</strong> 9:00 AM - 4:30 PM</p>
-                    <p><strong>Sunday:</strong> 12:00 PM - 3:30 PM</p>
+                  <div className="detail-item">
+                    <span className="icon">📞</span>
+                    <p>{formatPhone(location.phone)}</p>
+                  </div>
+                  <div className="detail-item">
+                    <span className="icon">📠</span>
+                    <p>Fax: {formatPhone(location.fax)}</p>
+                  </div>
+                  <div className="detail-item">
+                    <span className="icon">🕒</span>
+                    <div>
+                      <p><strong>Monday - Friday:</strong> {location.hours.find(h => h.day === 'Monday').hours}</p>
+                      <p><strong>Saturday:</strong> {location.hours.find(h => h.day === 'Saturday').hours}</p>
+                      <p><strong>Sunday:</strong> {location.hours.find(h => h.day === 'Sunday').hours}</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
 

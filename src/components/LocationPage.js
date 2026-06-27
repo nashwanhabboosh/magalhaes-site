@@ -2,40 +2,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './LocationPage.css';
 import AppointmentButton from './AppointmentButton';
+import { formatAddress } from '../data/locations';
 
 const LocationPage = ({ location }) => {
   const [isMapLoaded, setIsMapLoaded] = useState(false);
   const [activeDay, setActiveDay] = useState(null);
   const mapRef = useRef(null);
 
-  // Default location data - can be overridden by props
-  const defaultLocation = {
-    name: "North Attleboro Fashion Crossing",
-    address: {
-      street: "1250 S. Washington St",
-      city: "North Attleborough",
-      state: "MA",
-      zip: "02760"
-    },
-    phone: "508-717-0425",
-    fax: "508-992-3239",
-    hours: [
-      { day: "Monday", hours: "9:00 AM - 6:30 PM", isOpen: true },
-      { day: "Tuesday", hours: "9:00 AM - 6:30 PM", isOpen: true },
-      { day: "Wednesday", hours: "9:00 AM - 6:30 PM", isOpen: true },
-      { day: "Thursday", hours: "9:00 AM - 6:30 PM", isOpen: true },
-      { day: "Friday", hours: "9:00 AM - 6:30 PM", isOpen: true },
-      { day: "Saturday", hours: "9:00 AM - 4:30 PM", isOpen: true },
-      { day: "Sunday", hours: "12:00 PM - 3:30 PM", isOpen: true }
-    ],
-    coordinates: {
-      lat: 41.9329,
-      lng: -71.3398
-    },
-    mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2961.234567890123!2d-71.3398!3d41.9329!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDU1JzU4LjQiTiA3McKwMjAnMjMuMyJX!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus"
-  };
-
-  const locationData = location || defaultLocation;
+  const locationData = location;
 
   useEffect(() => {
     // Simulate map loading
@@ -51,8 +25,7 @@ const LocationPage = ({ location }) => {
   }, []);
 
   const handleDirections = () => {
-    const address = `${locationData.address.street}, ${locationData.address.city}, ${locationData.address.state} ${locationData.address.zip}`;
-    window.open(`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`, '_blank');
+    window.open(`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(formatAddress(locationData.address))}`, '_blank');
   };
 
   const handleCall = () => {
@@ -117,6 +90,9 @@ const LocationPage = ({ location }) => {
             <h3 className="card-title">Address</h3>
             <div className="card-content">
               <p className="address-line">{locationData.address.street}</p>
+              {locationData.address.street2 && (
+                <p className="address-line">{locationData.address.street2}</p>
+              )}
               <p className="address-line">
                 {locationData.address.city}, {locationData.address.state} {locationData.address.zip}
               </p>

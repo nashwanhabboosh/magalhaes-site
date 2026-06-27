@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import './Home.css';
 import AppointmentButton from '../../components/AppointmentButton';
 import { R2_BASE_URL } from '../../config';
+import { locations as officeLocations } from '../../data/locations';
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -51,10 +52,12 @@ const HomePage = () => {
     { icon: '💙', title: 'Patient-Centered', description: 'Your vision and comfort are our top priorities' }
   ];
 
-  const locations = [
-    { name: 'North Attleboro', address: '1250 S. Washington St, North Attleborough, MA', phone: '508-717-0425', link: '/location/north-attleboro-fashion-crossing' },
-    { name: 'Dartmouth', address: '382 State Road, Dartmouth MA', phone: '508-717-0425', link: '/location/north-dartmouth' }
-  ];
+  const locations = officeLocations.map((loc) => ({
+    name: loc.shortName,
+    address: `${loc.address.street}, ${loc.address.city}, ${loc.address.state}`,
+    phone: loc.phone,
+    link: loc.route.replace(/\/$/, '') // homepage links omit the trailing slash
+  }));
 
   return (
     <div className="homepage">

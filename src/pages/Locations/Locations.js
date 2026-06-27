@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Locations.css';
 import AppointmentButton from '../../components/AppointmentButton';
+import { locations, formatAddress, getWeekdaySummary } from '../../data/locations';
 
 const LocationsPage = () => {
   const [visibleSections, setVisibleSections] = useState([]);
@@ -32,55 +33,12 @@ const LocationsPage = () => {
     };
   }, []);
 
-  const locations = [
-    {
-      name: "North Attleboro",
-      fullName: "North Attleboro",
-      address: {
-        street: "1250 S. Washington St",
-        city: "North Attleborough",
-        state: "MA",
-        zip: "02760"
-      },
-      phone: "508-717-0425",
-      fax: "508-992-3239",
-      hours: {
-        weekday: "9:00 AM - 6:30 PM",
-        saturday: "9:00 AM - 4:30 PM",
-        sunday: "12:00 PM - 3:30 PM"
-      },
-      mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2967.8336979770897!2d-71.3503967242156!3d41.93942477123503!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e45d633f1697fb%3A0x8f44abc25c938a5a!2s1250%20S%20Washington%20St%2C%20North%20Attleborough%2C%20MA%2002760!5e0!3m2!1sen!2sus!4v1764319263337!5m2!1sen!2sus",
-      route: "/location/north-attleboro-fashion-crossing/"
-    },
-    {
-      name: "Dartmouth",
-      fullName: "North Dartmouth",
-      address: {
-        street: "382 State Road, Dartmouth Towne Center",
-        city: "North Dartmouth",
-        state: "MA",
-        zip: "02747"
-      },
-      phone: "508-717-0425",
-      fax: "508-992-3239",
-      hours: {
-        weekday: "9:00 AM - 6:30 PM",
-        saturday: "9:00 AM - 4:30 PM",
-        sunday: "12:00 PM - 3:30 PM"
-      },
-      mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2981.683444508563!2d-70.99739972423218!3d41.64097337126886!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e4e344f426dcbf%3A0x93c04ae41d179eee!2sDr.%20Magalhaes%20and%20Associates%2C%20Inc.!5e0!3m2!1sen!2sus!4v1764399606519!5m2!1sen!2sus",
-      route: "/location/north-dartmouth/"
-    }
-  ];
-
   const handleViewLocation = (route) => {
     navigate(route);
   };
 
   const handleGetDirections = (address) => {
-    const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
-      `${address.street}, ${address.city}, ${address.state} ${address.zip}`
-    )}`;
+    const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(formatAddress(address))}`;
     window.open(mapsUrl, '_blank');
   };
 
@@ -130,18 +88,21 @@ const LocationsPage = () => {
                       allowFullScreen=""
                       loading="lazy"
                       referrerPolicy="no-referrer-when-downgrade"
-                      title={`Map of ${location.name}`}
+                      title={`Map of ${location.shortName}`}
                     ></iframe>
                   </div>
 
                   <div className="location-info">
-                    <h2 className="location-name">{location.fullName}</h2>
+                    <h2 className="location-name">{location.name}</h2>
                     
                     <div className="info-section">
                       <div className="info-item">
                         <span className="info-icon">📍</span>
                         <div className="info-text">
                           <p className="address-line">{location.address.street}</p>
+                          {location.address.street2 && (
+                            <p className="address-line">{location.address.street2}</p>
+                          )}
                           <p className="address-line">
                             {location.address.city}, {location.address.state} {location.address.zip}
                           </p>
@@ -161,9 +122,16 @@ const LocationsPage = () => {
                       <div className="info-item">
                         <span className="info-icon">🕐</span>
                         <div className="info-text">
-                          <p className="hours-line">Mon - Fri: {location.hours.weekday}</p>
-                          <p className="hours-line">Saturday: {location.hours.saturday}</p>
-                          <p className="hours-line">Sunday: {location.hours.sunday}</p>
+                          {(() => {
+                            const weekdaySummary = getWeekdaySummary(location.hours);
+                            return (
+                              <>
+                                <p className="hours-line">Mon - Fri: {weekdaySummary.weekday}</p>
+                                <p className="hours-line">Saturday: {weekdaySummary.saturday}</p>
+                                <p className="hours-line">Sunday: {weekdaySummary.sunday}</p>
+                              </>
+                            );
+                          })()}
                         </div>
                       </div>
                     </div>
