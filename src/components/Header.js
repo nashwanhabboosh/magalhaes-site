@@ -102,6 +102,10 @@ export default function Header() {
               <img src="/logo_transparent.png" alt="Eye Health Vision Centers" className="logo-img" />
             </div>
             <div className="top-bar-actions">
+              <a href="tel:508-717-0425" className="action-link phone-link">
+                <span className="phone-icon">📞</span> 508-717-0425
+              </a>
+              <div className="divider"></div>
               <a href="https://portal.drcontactlens.com" target="_blank" rel="noopener noreferrer" className="action-link">ORDER CONTACTS</a>
               <div className="divider"></div>
               <PayInvoiceButton className="action-link"/>
