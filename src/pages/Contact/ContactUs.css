@@ -227,12 +227,6 @@
   gap: 20px;
 }
 
-@media (max-width: 768px) {
-  .form-row {
-    grid-template-columns: 1fr;
-  }
-}
-
 .form-group {
   display: flex;
   flex-direction: column;
@@ -402,6 +396,10 @@
 
   .location-card {
     padding: 20px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
   }
 }
 

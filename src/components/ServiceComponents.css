@@ -663,6 +663,14 @@
   .timeline-container {
     padding: 30px 20px;
   }
+
+  .exam-photo-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .exam-photo-item img {
+    height: 220px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -725,14 +733,4 @@
   padding: 14px;
   margin: 0;
   background: white;
-}
-
-@media (max-width: 768px) {
-  .exam-photo-strip {
-    grid-template-columns: 1fr;
-  }
-
-  .exam-photo-item img {
-    height: 220px;
-  }
 }

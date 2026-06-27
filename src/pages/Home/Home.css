@@ -908,6 +908,10 @@ html, body {
     width: 100%;
     justify-content: center;
   }
+
+  .home-hero-content {
+    margin-top: calc(70vh * 0.22);  /* adjusted for the shorter 70vh mobile height set above */
+  }
 }
 
 @media (max-width: 480px) {
@@ -915,12 +919,6 @@ html, body {
   .home-trust-card,
   .home-location-quick-card {
     padding: 30px 20px;
-  }
-}
-
-@media (max-width: 768px) {
-  .home-hero-content {
-    margin-top: calc(70vh * 0.22);  /* adjusted for the shorter 70vh mobile height */
   }
 }
 

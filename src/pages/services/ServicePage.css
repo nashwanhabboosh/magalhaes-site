@@ -568,6 +568,18 @@
     width: 100%;
     justify-content: center;
   }
+
+  .practice-photo-banner-img {
+    height: 260px;
+  }
+
+  .practice-photo-banner-caption {
+    padding: 24px 20px 20px;
+  }
+
+  .practice-photo-banner-caption h3 {
+    font-size: 1.2rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -623,18 +635,4 @@
   margin: 0;
   max-width: 600px;
   line-height: 1.6;
-}
-
-@media (max-width: 768px) {
-  .practice-photo-banner-img {
-    height: 260px;
-  }
-
-  .practice-photo-banner-caption {
-    padding: 24px 20px 20px;
-  }
-
-  .practice-photo-banner-caption h3 {
-    font-size: 1.2rem;
-  }
 }
