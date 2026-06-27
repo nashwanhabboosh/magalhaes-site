@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Header.css';
 import Dropdown from './Dropdown';
+import MobileNav from './MobileNav';
 import AppointmentButton from './AppointmentButton';
 import PayInvoiceButton from './PayInvoiceButton';
 
@@ -94,6 +95,13 @@ export default function Header() {
 
   return (
     <>
+      <MobileNav
+        navItems={navItems}
+        dropdownItems={dropdownItems}
+        onSimpleNavClick={handleSimpleNavClick}
+        onDropdownItemClick={handleNavigation}
+      />
+
       {/* Regular Header */}
       <header className="header-regular">
         <div className="top-bar">

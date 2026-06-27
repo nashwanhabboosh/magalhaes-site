@@ -1,0 +1,289 @@
+/* MobileNav.css
+ *
+ * Visual language matches the existing desktop nav (Header.css) exactly:
+ * navy background (#1a1a2e / #16213e), red accent (#dc2626), DM Sans type.
+ * Shown only below the tablet breakpoint -- see the max-width: 992px rule
+ * at the bottom, which hides the desktop nav-list and reveals the
+ * hamburger toggle. Header.css handles that side of the swap; this file
+ * only styles the toggle button and the overlay itself.
+ */
+
+.mobile-nav-toggle {
+  display: none; /* shown only at <=992px, see Header.css */
+  position: fixed;
+  top: 1.1rem;
+  right: 1.25rem;
+  z-index: 1500; /* above both .header-regular and .header-sticky (z-index: 1000) */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  background: rgba(26, 26, 46, 0.92);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.mobile-nav-bar {
+  display: block;
+  width: 26px;
+  height: 2px;
+  background: #ffffff;
+  border-radius: 2px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.mobile-nav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2000;
+  background: #1a1a2e;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  animation: mobileNavFadeIn 0.2s ease;
+}
+
+@keyframes mobileNavFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.mobile-nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+.mobile-nav-logo {
+  height: 2.25rem;
+  width: auto;
+  object-fit: contain;
+}
+
+.mobile-nav-close {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.mobile-nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 0 1rem;
+  flex: 1;
+}
+
+.mobile-nav-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mobile-nav-link {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: 0.3px;
+  padding: 1.1rem 1.5rem;
+  text-align: left;
+  cursor: pointer;
+  min-height: 48px;
+}
+
+.mobile-nav-link.toggle .mobile-nav-chevron {
+  transition: transform 0.2s ease;
+}
+
+.mobile-nav-link.toggle.expanded .mobile-nav-chevron {
+  transform: rotate(180deg);
+}
+
+.mobile-nav-chevron {
+  color: #dc2626;
+  font-size: 1.1rem;
+  margin-left: 0.5rem;
+}
+
+.mobile-nav-sublist {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0.5rem;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.mobile-nav-subitem {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.mobile-nav-sublink {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.9rem 1.5rem 0.9rem 2.25rem;
+  text-align: left;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.mobile-nav-sublink.nested-toggle.expanded .mobile-nav-chevron {
+  transform: rotate(180deg);
+}
+
+.mobile-nav-nested-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0.5rem;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.mobile-nav-nested-list .mobile-nav-sublink {
+  padding-left: 3rem;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.mobile-nav-footer {
+  flex-shrink: 0;
+  padding: 1.25rem 1.5rem 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-nav-phone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  min-height: 48px;
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  color: #ffffff;
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+.mobile-nav-footer-links {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.mobile-nav-footer-link-wrap {
+  flex: 1;
+  display: flex;
+}
+
+.mobile-nav-footer-link {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-decoration: none;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 0 0.75rem;
+}
+
+/* Show the hamburger and hide the desktop nav at tablet width and below.
+   992px (rather than 768px) because the desktop nav already gets cramped
+   with 8 items + dropdowns well before phone width -- see Header.css's
+   existing 1024px breakpoint, which already starts shrinking nav text.
+
+   .top-bar-actions (phone/Order Contacts/Pay Invoice/Schedule Appointment)
+   is hidden here -- its content is preserved in the overlay footer
+   instead (see .mobile-nav-footer) -- but .top-bar's logo stays visible,
+   so there's still a logo on screen before the user scrolls into the
+   sticky header. */
+@media (max-width: 992px) {
+  .mobile-nav-toggle {
+    display: flex;
+  }
+
+  /* Logo is explicitly left-aligned (rather than inheriting the centered
+     alignment .top-bar-container's base rule would otherwise give its one
+     remaining child) so it can never extend under the fixed hamburger
+     toggle in the top-right corner -- logo-left/hamburger-right is also
+     the more conventional mobile header layout. */
+  .header-regular .top-bar-container {
+    align-items: flex-start;
+  }
+
+  /* The phone/Order Contacts/Pay Invoice/Schedule Appointment row is
+     hidden here -- it's preserved in the overlay footer instead (see
+     .mobile-nav-footer) -- both because it would otherwise wrap onto
+     several lines competing with the fixed hamburger for the same
+     vertical band, and because the overlay is now the single, clear
+     place for those actions on mobile rather than duplicating them. */
+  .header-regular .top-bar-actions {
+    display: none;
+  }
+
+  .header-regular .nav-list,
+  .header-sticky .nav-list {
+    display: none;
+  }
+
+  /* The sticky header's nav-appointment-btn competes for space with the
+     hamburger at this width; hide it here since the same action is
+     reachable via the overlay footer or any page's own CTA buttons.
+     .nav-logo is intentionally left visible here -- with .nav-list also
+     hidden, it's the only thing left in .header-sticky once scrolled,
+     and removing it too would leave an empty navy bar. */
+  .header-sticky .nav-appointment-btn {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-nav-overlay {
+    animation: none;
+  }
+
+  .mobile-nav-bar,
+  .mobile-nav-chevron {
+    transition: none;
+  }
+}
