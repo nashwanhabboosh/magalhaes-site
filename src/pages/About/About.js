@@ -6,7 +6,7 @@ import { R2_BASE_URL } from '../../config';
 
 import abb362 from '../../assets/ABB/ABB-2023-Powers-362.jpg';
 import abb391 from '../../assets/ABB/ABB-2023-Powers-391.jpg';
-import abb429 from '../../assets/ABB/ABB-2023-Powers-429.jpg';
+import abb429 from '../../assets/ABB/ABB-2023-Powers-357.jpg';
 import abb483 from '../../assets/ABB/ABB-2023-Powers-483.jpg';
 
 import morocco1 from '../../assets/Missions/Morocco/Morocco1.jpg';

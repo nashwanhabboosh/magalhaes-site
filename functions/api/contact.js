@@ -71,7 +71,7 @@ export async function onRequestPost(context) {
       body: JSON.stringify({
         // "from" must be an address on your verified domain
         from: 'Website Contact Form <contact@lenscraftersdoctor.com>',
-        to: ['nashwanhabbooshcs@gmail.com'],
+        to: ['MagalhaesBilling@gmail.com'],
         reply_to: email, // lets staff hit "reply" and respond directly to the patient
         subject: `New Contact Form Submission - ${firstName} ${lastName}`,
         text: emailBody,
