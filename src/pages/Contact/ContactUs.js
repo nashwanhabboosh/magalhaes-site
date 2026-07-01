@@ -1,24 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import './ContactUs.css';
 import { locations, formatPhone } from '../../data/locations';
 
+const INITIAL_FORM_DATA = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  phone: '',
+  location: '',
+  preferredContact: 'email',
+  message: '',
+  appointmentType: 'general'
+};
+
 const ContactUs = () => {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    location: '',
-    preferredContact: 'email',
-    message: '',
-    appointmentType: 'general'
-  });
+  const [formData, setFormData] = useState(INITIAL_FORM_DATA);
 
   const [formStatus, setFormStatus] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // Synchronous guard: state updates are async, so relying on `isSubmitting`
+  // alone leaves a window where a repeat submit can slip through before React
+  // re-renders the disabled button. A ref flips immediately.
+  const submittingRef = useRef(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    // Composing a fresh message re-arms the form after a successful send.
+    if (isSubmitted) {
+      setIsSubmitted(false);
+      setFormStatus('');
+    }
     setFormData(prev => ({
       ...prev,
       [name]: value
@@ -27,6 +40,8 @@ const ContactUs = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (submittingRef.current || isSubmitted) return;
+    submittingRef.current = true;
     setIsSubmitting(true);
     setFormStatus('');
 
@@ -41,27 +56,18 @@ const ContactUs = () => {
         throw new Error('Failed to send message');
       }
 
+      // Clear the form and mark the submission terminal. The button stays
+      // disabled and the data is gone, so an identical message can't be
+      // re-sent without composing a new one.
+      setFormData(INITIAL_FORM_DATA);
+      setIsSubmitted(true);
       setFormStatus('Thank you for contacting us! We will get back to you shortly.');
-
-      // Reset form after a successful submission
-      setTimeout(() => {
-        setFormData({
-          firstName: '',
-          lastName: '',
-          email: '',
-          phone: '',
-          location: '',
-          preferredContact: 'email',
-          message: '',
-          appointmentType: 'general'
-        });
-        setFormStatus('');
-      }, 5000);
     } catch (err) {
       console.error('Contact form submission error:', err);
       setFormStatus('Sorry, something went wrong sending your message. Please call our office directly or try again.');
     } finally {
       setIsSubmitting(false);
+      submittingRef.current = false;
     }
   };
 
@@ -246,8 +252,8 @@ const ContactUs = () => {
               />
             </div>
 
-            <button type="submit" className="submit-button" disabled={isSubmitting}>
-              {isSubmitting ? 'Sending...' : 'Send Message'}
+            <button type="submit" className="submit-button" disabled={isSubmitting || isSubmitted}>
+              {isSubmitting ? 'Sending...' : isSubmitted ? 'Message Sent' : 'Send Message'}
             </button>
           </form>
         </div>
