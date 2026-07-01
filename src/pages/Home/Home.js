@@ -13,11 +13,11 @@ const HomePage = () => {
   const videoRef = useRef(null);
 
   const videos = [
-    `${R2_BASE_URL}/b-roll/dji-fly-20250927-081338-18.mov`,
-    `${R2_BASE_URL}/b-roll/dji-fly-20250927-082300-22.mov`,
-    `${R2_BASE_URL}/b-roll/dji-fly-20250927-082358-23.mov`,
-    `${R2_BASE_URL}/b-roll/dji-fly-20250927-082500-24.mov`,
-    `${R2_BASE_URL}/b-roll/dji-fly-20250927-082848-27.mov`
+    `${R2_BASE_URL}/B-roll/dji_fly_20250927_081338_18_1758997287614_video.mov`,
+    `${R2_BASE_URL}/B-roll/dji_fly_20250927_082300_22_1758997242867_video.mov`,
+    `${R2_BASE_URL}/B-roll/dji_fly_20250927_082358_23_1758997250948_video.MOV`,
+    `${R2_BASE_URL}/B-roll/dji_fly_20250927_082500_24_1758997200767_video.mov`,
+    `${R2_BASE_URL}/B-roll/dji_fly_20250927_082848_27_1758997133890_video.mov`
   ];
 
   useEffect(() => {
@@ -67,12 +67,13 @@ const HomePage = () => {
           <video
             ref={videoRef}
             className={`home-hero-video ${isVideoTransitioning ? 'transitioning' : ''}`}
-            src={videos[currentVideoIndex]}
             autoPlay
             muted
             playsInline
             key={currentVideoIndex}
-          />
+          >
+            <source src={videos[currentVideoIndex]} type="video/mp4" />
+          </video>
           <div className="home-video-overlay"></div>
         </div>
 
