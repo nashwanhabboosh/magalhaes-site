@@ -1,12 +1,13 @@
 // ContactLenses.js
 import React from 'react';
 import { 
-  ServiceHero, 
-  AlternatingImageSection, 
-  FeatureCards, 
-  AccordionFAQ, 
+  ServiceHero,
+  AlternatingImageSection,
+  FeatureCards,
+  AccordionFAQ,
   ProcedureTimeline,
-  CTASection 
+  VideoEmbed,
+  CTASection
 } from '../../components/ServiceComponents';
 
 import img1 from '../../assets/practice/20250928_magalhaes_406.jpg';
@@ -172,7 +173,13 @@ const ContactLenses = () => {
         <FeatureCards features={features} />
         
         <AlternatingImageSection sections={sections} />
-        
+
+        <VideoEmbed
+          title="How to Insert Your Contact Lenses"
+          description="New to contacts? This short step-by-step tutorial walks you through safely putting your lenses in. Remember to always wash and dry your hands first."
+          videoId="WuTHmJe2ZUY"
+        />
+
         <ProcedureTimeline steps={careSteps} />
         
         <AccordionFAQ faqs={faqs} />

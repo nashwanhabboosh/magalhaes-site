@@ -196,6 +196,53 @@ export const CTASection = ({ title, description, buttonText, icon = '📅' }) =>
   );
 };
 
+// 8. Responsive YouTube Video Embed with Fade-In
+export const VideoEmbed = ({ title, description, videoId, caption }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const currentRef = sectionRef.current;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, []);
+
+  return (
+    <div
+      ref={sectionRef}
+      className={`video-embed-section ${isVisible ? 'visible' : ''}`}
+    >
+      {title && <h2 className="video-embed-title">{title}</h2>}
+      {description && <p className="video-embed-description">{description}</p>}
+      <div className="video-embed-frame">
+        <iframe
+          src={`https://www.youtube-nocookie.com/embed/${videoId}`}
+          title={title || 'Video'}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></iframe>
+      </div>
+      {caption && <p className="video-embed-caption">{caption}</p>}
+    </div>
+  );
+};
+
 // 7. Timeline/Steps Component
 export const ProcedureTimeline = ({ steps }) => {
   const [visibleSteps, setVisibleSteps] = useState([]);

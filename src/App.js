@@ -15,6 +15,7 @@ import Services from "./pages/services/ServicePage";
 import Doctors from "./pages/Doctors/Doctors";
 import Locations from "./pages/Locations/Locations";
 import Resources from "./pages/PatientResources/PatientResources"
+import Sitemap from "./pages/Sitemap/Sitemap";
 
 import NorthAttleboro from "./pages/Locations/NorthAttleboro";
 import NorthDartmouth from "./pages/Locations/Dartmouth";
@@ -66,6 +67,7 @@ function App() {
         <Route path="/locations/" element={<Locations />} />
         <Route path="/careers/" element={<Careers />} />
         <Route path="/patient-info/" element={<Resources />} />
+        <Route path="/sitemap" element={<Sitemap />} />
         <Route path="/location/north-attleboro-fashion-crossing" element={<NorthAttleboro />} />
         <Route path="/location/north-dartmouth" element={<NorthDartmouth />} />
 
