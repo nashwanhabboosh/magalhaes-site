@@ -54,28 +54,28 @@ const DiabeticEyeDisease = () => {
       title: 'WHAT IS DIABETIC EYE DISEASE?',
       content: 'Patients with diabetes are at higher risk for developing eye conditions, with over 40 percent developing some form of eye disease. Diabetic retinopathy is the most common diabetic eye disease and the primary cause of blindness in the United States, especially in younger populations. Diabetes can damage blood vessels in the eye, causing blood or fluid to leak from the retina or new blood vessels to grow on its surface. Early stages usually show no symptoms, making regular comprehensive dilated eye exams crucial. As the disease progresses, symptoms may include blurry or doubled vision, flashing lights, blank spots, dark floaters, pain or pressure in the eyes, or problems with peripheral vision.',
       image: img1,
-      alt: 'Diabetic eye disease and its effects on vision',
+      alt: "Diabetic eye disease and its effect on vision – diabetic eye exams in North Dartmouth, MA",
     },
     {
       tag: 'Stages',
       title: 'STAGES OF DIABETIC RETINOPATHY',
       content: 'There are four distinct stages: Mild nonproliferative (microaneurysms develop in tiny retinal blood vessels), Moderate nonproliferative (blood vessels become blocked), Severe nonproliferative (blood supply to retina is blocked), and Proliferative retinopathy (new blood vessels grow alongside the retina). During any stage, macula edema can develop — fluid buildup in the macula causing blurred vision. About half of people with proliferative retinopathy are diagnosed with macula edema.',
       image: img2,
-      alt: 'Stages of diabetic retinopathy progression',
+      alt: "Stages of diabetic retinopathy progression monitored by ODs in North Attleboro, MA",
     },
     {
       tag: 'Treatment',
       title: 'TREATMENT OPTIONS',
       content: 'The first three stages require blood sugar, blood pressure, and cholesterol control. Proliferative retinopathy is treated with scatter laser treatment to shrink abnormal blood vessels. Severe bleeding may require vitrectomy surgery. Macula edema is treated with focal laser treatment — several hundred small laser burns placed around the macula to prevent leakage and reduce fluid. Anti-VEGF injections into the eye are also used. Our doctors carefully assess each individual situation.',
       image: img3,
-      alt: 'Treatment options for diabetic eye disease',
+      alt: "Diabetic eye disease treatment and retinal monitoring for Southeastern MA patients",
     },
     {
       tag: 'Prevention',
       title: 'PREVENTION AND RISK REDUCTION',
       content: 'Prevention is best accomplished with careful and consistent eye examinations twice yearly. DVS, a strong nutraceutical, has been proven to strengthen retinal blood vessels and support diabetic eye health. Risk reduction includes monitoring vision changes, keeping A1C levels under 7%, managing blood pressure and cholesterol, eating a healthy diet, and participating in regular exercise. The length of time a patient has diabetes determines the likelihood of developing diabetic retinopathy.',
       image: img4,
-      alt: 'Prevention and risk reduction for diabetic eye disease',
+      alt: "Preventing diabetic retinopathy with annual diabetic eye exams on the South Coast of MA",
     },
   ];
 

@@ -83,7 +83,7 @@ const DoctorsPage = () => {
                   <div className="doctor-image-container">
                     <img
                       src={doctor.image}
-                      alt={`Headshot of Dr. ${doctor.name}`}
+                      alt={doctor.photoAlt || `Headshot of Dr. ${doctor.name}`}
                       className="doctor-image"
                     />
                   </div>

@@ -402,7 +402,7 @@ const CareersPage = () => {
               <div className="contact-person">
                 <img
                   src={ColeenPhoto}
-                  alt="Coleen Magalhaes"
+                  alt="Coleen Magalhães, careers contact at Dr. Magalhães and Associates in North Dartmouth, MA"
                   className="contact-photo"
                 />
                 <div className="contact-details">

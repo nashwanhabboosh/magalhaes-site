@@ -54,28 +54,28 @@ const Latisse = () => {
       title: 'WHAT IS LATISSE®?',
       content: <>LATISSE® eyelash enhancer is the first and only U.S. Food and Drug Administration-approved cosmetic treatment for increasing the length, thickness and darkness of eyelashes. Available only through prescription, LATISSE is applied once a day to the base of the upper eyelashes. This revolutionary treatment offers a safe and effective way to enhance your natural lashes without the need for extensions or false lashes. Learn more at <a href="https://www.latisse.com" target="_blank" rel="noopener noreferrer">latisse.com</a>.</>,
       image: img1,
-      alt: 'LATISSE eyelash enhancement treatment',
+      alt: "LATISSE eyelash growth treatment available in North Dartmouth and North Attleboro, MA",
     },
     {
       tag: 'How It Works & Results',
       title: 'HOW LATISSE® WORKS & RESULTS',
       content: 'LATISSE\'s active ingredient, bimatoprost, increases the number of hairs in, and the duration of, a hair follicle\'s growth period — resulting in longer, fuller, and darker lashes. Results may be apparent within four weeks of consistent use, with full results taking sixteen weeks. You will gradually notice your lashes becoming longer, thicker, and darker as treatment progresses. It is important to understand that LATISSE results are not permanent — once treatment is discontinued, your eyelashes will gradually return to their previous appearance over time.',
       image: img2,
-      alt: 'Full, longer lashes achieved with LATISSE',
+      alt: "Fuller, longer lashes achieved with LATISSE, prescribed by ODs on the South Coast of MA",
     },
     {
       tag: 'Candidates & Application',
       title: 'GOOD CANDIDATES & APPLICATION',
       content: 'Anyone who wants longer, fuller and darker eyelashes may be a candidate for LATISSE. However, those with eye infections, broken or irritated skin on their eyelids, or who use products for elevated intraocular pressure should not use LATISSE. A full medical history is taken prior to starting treatment. LATISSE is applied at night after removing contact lenses and makeup. Apply one drop to a single-use disposable applicator and draw it along the base of the upper eyelid at the lash line, moving from the inside to the outside. Blot excess solution and use a separate applicator for each eye. Contact lenses can be reinserted 15 minutes after application.',
       image: img3,
-      alt: 'Good candidates for LATISSE treatment and application process',
+      alt: "Good candidates for LATISSE and how it is applied, explained by Southeastern MA optometrists",
     },
     {
       tag: 'Safety & Side Effects',
       title: 'SIDE EFFECTS & SAFETY',
       content: 'Common side effects of LATISSE end when treatment ends and include eye itchiness, eye redness, skin darkening around the application area, eyelid redness, eye irritation, and eye dryness. There is one potentially serious side effect: LATISSE may cause increased brown iris pigmentation of the colored part of the eye, which is likely to be permanent, although this is very infrequent according to the manufacturer. A full consultation with our doctors will help you understand all risks and benefits before beginning treatment.',
       image: img4,
-      alt: 'LATISSE safety information and side effects',
+      alt: "LATISSE side effects and safety information reviewed with patients in North Attleboro, MA",
     },
   ];
 

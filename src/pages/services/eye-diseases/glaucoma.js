@@ -54,28 +54,28 @@ const Glaucoma = () => {
       title: 'WHAT IS GLAUCOMA?',
       content: 'Glaucoma is a group of related diseases that damage the optic nerve resulting in vision loss and blindness. Known as the "sneaky thief of sight," many people with glaucoma experience no symptoms and may not be aware they have the disease until significant vision has been lost. Primary open-angle glaucoma (POAG) is the most common type, accounting for 95% of cases, where fluid drains too slowly causing gradual pressure buildup. Other types include angle-closure glaucoma, which requires immediate attention; low tension glaucoma, which damages the optic nerve despite normal pressure; congenital glaucoma in children; and secondary glaucoma arising from conditions like diabetes or cataracts. With early detection and treatment, eyes can be protected against serious vision loss.',
       image: img1,
-      alt: 'Glaucoma and its effect on the optic nerve and vision',
+      alt: "Glaucoma and its effect on the optic nerve – glaucoma testing in North Dartmouth, MA",
     },
     {
       tag: 'Causes & Risk Factors',
       title: 'CAUSES AND RISK FACTORS',
       content: 'Conditions that contribute to glaucoma include increased pressure within the eye, severe eye infection, injury to the eye, blocked blood vessels, and inflammatory conditions. Risk factors include age, ethnicity, family history of glaucoma, myopia, hyperopia, thin corneas, elevated eye pressure, diabetes, low blood pressure, certain medications, and previous eye conditions or injuries. Glaucoma is more prevalent in African Americans over 40, diabetics, and anyone over 60. It affects 3 million Americans and is the second leading cause of blindness.',
       image: img2,
-      alt: 'Glaucoma risk factors and causes',
+      alt: "Glaucoma causes and risk factors reviewed by optometrists in North Attleboro, MA",
     },
     {
       tag: 'Symptoms & Diagnosis',
       title: 'SYMPTOMS AND DIAGNOSIS',
       content: 'Open-angle glaucoma symptoms include blind spots in vision that enlarge, loss of peripheral vision, and tunnel vision. Angle-closure glaucoma causes severe eye pain, nausea, vomiting, blurry vision, rainbow halos around lights, red eyes, and headaches — and requires immediate medical attention. Diagnosis requires a comprehensive examination including tonometry to measure eye pressure, dilated eye examination, visual field testing, retinal evaluation, pachymetry to measure cornea thickness, gonioscopy to examine drainage angles, and visual acuity testing. Dr. Magalhaes and Associates are well equipped with state-of-the-art equipment to diagnose this disease.',
       image: img3,
-      alt: 'Glaucoma diagnostic testing and symptoms evaluation',
+      alt: "Glaucoma diagnostic testing, including visual field and OCT imaging, in Dartmouth, MA",
     },
     {
       tag: 'Treatment & Prevention',
       title: 'TREATMENT AND PREVENTION',
       content: 'There is no cure for glaucoma, so treatment focuses on relieving symptoms and preventing further damage. Medical management includes eye drops or oral medications to reduce fluid production or help drain excess fluid. Laser surgery options — including trabeculoplasty, iridotomy, and cyclophotocoagulation — increase fluid outflow or eliminate blockages. Surgical intervention with trabeculectomy creates a new drainage channel when other methods are unsuccessful. Patients can now be treated for all forms of non-surgical glaucoma in our offices. While glaucoma cannot be prevented from developing, regular comprehensive eye examinations, annual glaucoma screenings, and consistent adherence to your treatment plan are essential for preventing progression and preserving vision.',
       image: img4,
-      alt: 'Glaucoma treatment options and prevention strategies',
+      alt: "Glaucoma treatment and prevention with eye drops and monitoring in Southeastern MA",
     },
   ];
 

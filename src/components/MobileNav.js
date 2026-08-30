@@ -142,7 +142,7 @@ const MobileNav = ({ navItems, dropdownItems, onSimpleNavClick, onDropdownItemCl
         createPortal(
           <div className="mobile-nav-overlay" role="dialog" aria-modal="true" aria-label="Site menu">
             <div className="mobile-nav-header">
-              <img src="/logo_transparent.png" alt="Eye Health Vision Centers" className="mobile-nav-logo" />
+              <img src="/logo_transparent.png" alt="Dr. Magalhães and Associates logo – optometrists in North Dartmouth and North Attleboro, MA" className="mobile-nav-logo" />
               <button className="mobile-nav-close" onClick={closeMenu} aria-label="Close menu">
                 ✕
               </button>

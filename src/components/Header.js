@@ -107,7 +107,7 @@ export default function Header() {
         <div className="top-bar">
           <div className="top-bar-container">
             <div className="logo-container" onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
-              <img src="/logo_transparent.png" alt="Eye Health Vision Centers" className="logo-img" />
+              <img src="/logo_transparent.png" alt="Dr. Magalhães and Associates logo – optometrists in North Dartmouth and North Attleboro, MA" className="logo-img" />
             </div>
             <div className="top-bar-actions">
               <a href="tel:508-717-0425" className="action-link phone-link">
@@ -134,7 +134,7 @@ export default function Header() {
         <nav className="nav-bar">
           <div className="nav-container">
             <div className="nav-logo" onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
-              <img src="/logo_transparent.png" alt="Eye Health Vision Centers" className="nav-logo-img" />
+              <img src="/logo_transparent.png" alt="Dr. Magalhães and Associates logo – optometrists in North Dartmouth and North Attleboro, MA" className="nav-logo-img" />
             </div>
             {navList}
             <AppointmentButton className="nav-appointment-btn" label="SCHEDULE APPOINTMENT" />

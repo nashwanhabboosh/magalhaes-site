@@ -54,28 +54,28 @@ const DryEye = () => {
       title: 'WHAT IS DRY EYE?',
       content: 'Dry eye is a common condition that occurs when the eyes are insufficiently moisturized, leading to itching, redness and pain from dry spots on the surface of the eye. The eyes may become dry and irritated because the tear ducts don\'t produce enough tears, or because of a chemical imbalance in the tears. Symptoms usually affect both eyes and may include stinging or burning, a scratchy feeling, eye fatigue, sensitivity to light, difficulty wearing contact lenses, excessive tearing, and blurry vision. Left untreated, dry eye can damage the eye\'s tissues, leaving tiny abrasions on the surface and potentially causing pain, corneal ulcers or scars, and loss of vision.',
       image: img1,
-      alt: 'Dry eye condition affecting the ocular surface',
+      alt: "Dry eye disease affecting the ocular surface – dry eye treatment in North Dartmouth, MA",
     },
     {
       tag: 'Causes',
       title: 'CAUSES OF DRY EYE',
       content: 'People usually begin experiencing dry eye symptoms as they age, but the condition can also result from certain medications, conditions or injuries. Dry eye tends to affect women more often than men due to hormonal changes during pregnancy or menopause, and is more common in people over 50. Other causes include medications like antihistamines and blood pressure medication, medical conditions such as rheumatoid arthritis and diabetes, environmental conditions, long-term contact lens use, eye surgery, sun exposure, smoking, thyroid eye disease, eyelid surgery, and inflammation of the conjunctiva.',
       image: img2,
-      alt: 'Causes and risk factors of dry eye syndrome',
+      alt: "Causes and risk factors of dry eye syndrome explained by ODs in North Attleboro, MA",
     },
     {
       tag: 'TearLab Diagnostics',
       title: 'TEARLAB OSMOLARITY TESTING',
       content: 'TearLab is an essential diagnostic test for dry eye syndrome that provides precise and predictive information at the point-of-care. The test measures tear osmolarity (salt content) using nanoliter volumes of tear fluid collected directly from the eyelid margin. Abnormal osmolarity is defined by an elevated reading over 300 mOsm/L or when the inter-eye difference is greater than 8 mOsm/L. TearLab has a positive predictive value of 89% and is more precise than other universally accepted point-of-care tests. This impressive technology helps in accurate diagnosis and treatment planning.',
       image: img3,
-      alt: 'Doctor discussing TearLab dry eye diagnostic testing with patient',
+      alt: "Optometrist reviewing TearLab osmolarity dry eye testing with a patient in Dartmouth, MA",
     },
     {
       tag: 'Treatment',
       title: 'ADVANCED TREATMENT OPTIONS',
       content: 'Treatment depends on the cause, severity, and patient preference. Non-surgical options include artificial tears, blinking exercises, increased humidity, omega-3 supplementation, and prescription medications like Cequa and Regener-Eyes. Surgical options include punctal plugs to limit tear drainage and punctal cautery to permanently close drainage holes. Dr. Magalhaes also uses Oxervate, a neuro-regenerative therapeutic eye drop, for advanced dry eye cases. Additionally, Dr. Magalhaes is the only doctor in the area using FDA-approved amniotic membrane therapy — a unique collagenous tissue derived from the placenta with anti-inflammatory and anti-microbial properties that acts as a natural scaffold to expedite healing of the ocular surface.',
       image: img4,
-      alt: 'Advanced dry eye treatment options including amniotic membrane therapy',
+      alt: "Advanced dry eye treatments including amniotic membrane therapy in Southeastern MA",
     },
   ];
 

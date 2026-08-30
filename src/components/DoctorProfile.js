@@ -10,7 +10,7 @@ export const DoctorProfile = ({ doctor }) => {
             {doctor.image ? (
               <img 
                 src={doctor.image} 
-                alt={`Dr. ${doctor.name}`}
+                alt={doctor.photoAlt || `Dr. ${doctor.name}`}
                 className="profile-image"
                 onError={(e) => {
                   e.target.style.display = 'none';

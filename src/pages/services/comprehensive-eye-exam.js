@@ -39,28 +39,28 @@ const ComprehensiveEyeExam = () => {
       title: 'WHAT IS A COMPREHENSIVE EYE EXAM?',
       content: 'An eye exam is different from a vision screening, which only tests vision. Only an eye doctor can perform a comprehensive eye exam to evaluate the overall health of the eye and detect any changes that may indicate a vision disorder. During a routine eye exam, your doctor will evaluate your eyes for refractive errors and common conditions such as amblyopia, strabismus, presbyopia, glaucoma, and diabetic retinopathy through a series of specialized tests.',
       image: img1,
-      alt: 'Doctor performing a comprehensive eye exam',
+      alt: "Comprehensive eye exam with an optometrist, available in North Dartmouth and North Attleboro, MA",
     },
     {
       tag: 'What an Eye Exam is Not',
       title: 'WHAT A COMPREHENSIVE EYE EXAM IS NOT',
       content: 'You may have heard or seen sources of eye exams, such as computerized kiosks in malls or online exams, advertised as part of purchases for contact lenses or eyeglasses — one such example is 1-800 Contacts. In no way are these exams conducted personally by licensed doctors in a face-to-face setting. The exams are conducted remotely and in such a way that invites errors and missed diagnoses.\n\nThe Pennsylvania Society of Optometrists has issued patient safety alerts regarding kiosk eye exams. The American Optometric Association has stated that direct-to-patient technologies are not a substitute for a Comprehensive Eye Exam.\n\nPlease schedule an eye exam at our offices and be assured that all your eye care needs will be taken care of, in a personal and caring direct-to-patient fashion.',
       image: img2,
-      alt: 'In-person eye exam versus remote kiosk exam',
+      alt: "In-person comprehensive eye exam vs. remote kiosk vision screening, explained by North Attleboro, MA optometrists",
     },
     {
       tag: 'When To Get an Exam',
       title: 'WHEN SHOULD YOU GET A COMPREHENSIVE EYE EXAM?',
       content: 'Patients should see their doctor for a comprehensive eye exam every year. Children need regular tests to ensure proper vision development and prevent interference with academic achievements. Older adults are at higher risk for conditions like glaucoma, macular degeneration, and cataracts. Even with healthy eyes, regular exams allow doctors to view blood vessels and detect chronic conditions early.',
       image: img3,
-      alt: 'Patient scheduling a regular eye exam',
+      alt: "Patient scheduling a routine eye exam with an optometry practice serving Dartmouth and the South Coast of MA",
     },
     {
       tag: 'Why Get an Exam',
       title: 'WHY ARE REGULAR EYE EXAMS IMPORTANT?',
       content: 'Some diseases like glaucoma develop gradually without symptoms of pain or vision loss, so patients may not notice anything wrong until significant and irreversible damage has occurred. Early detection allows for treatment options and reduced risk of permanent damage. Regular exams are an essential tool in maintaining both eye health and overall wellness.',
       image: img4,
-      alt: 'Early detection and prevention through regular eye exams',
+      alt: "Early detection of eye disease through regular eye exams in North Dartmouth and North Attleboro, MA",
     },
   ];
 

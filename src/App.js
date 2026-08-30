@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
+import Seo from "./components/Seo";
 
 // Pages
 import Home from "./pages/Home/Home";
@@ -54,6 +55,7 @@ function App() {
   return (
     <Router>
       {/* Components that appear on all pages */}
+      <Seo />
       <ScrollToTop />
       <Header />
 

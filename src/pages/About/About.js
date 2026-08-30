@@ -60,8 +60,17 @@ const AboutPage = () => {
     };
   }, []);
 
-  const abbPhotos = [abb362, abb391, abb429, abb483];
-  const moroccoPhotos = [morocco1, morocco2, morocco3];
+  const abbPhotos = [
+    { src: abb362, alt: 'Dr. Magalhães and Associates team at an ABB community eye care campaign event in Southeastern MA' },
+    { src: abb391, alt: 'Practice staff supporting the ABB eye care campaign serving South Coast MA communities' },
+    { src: abb429, alt: 'ABB campaign event hosted by Dr. Magalhães and Associates in Bristol County, MA' },
+    { src: abb483, alt: 'Community eye care outreach at the ABB campaign, North Dartmouth, MA optometry practice' }
+  ];
+  const moroccoPhotos = [
+    { src: morocco1, alt: 'Dr. John Magalhães, OD, examining a patient during the Morocco volunteer eye care mission' },
+    { src: morocco2, alt: 'Volunteer optometry team providing eye exams on the Morocco medical mission' },
+    { src: morocco3, alt: 'Distributing eyeglasses on the Morocco eye care mission led by our North Dartmouth, MA practice' }
+  ];
   const tanzaniaVideos = [
     { src: tanzania1, title: 'Tanzania Mission 2023 — Part 1' },
     { src: tanzania2, title: 'Tanzania Mission 2023 — Part 2' },
@@ -297,8 +306,8 @@ const AboutPage = () => {
               </div>
               <div className="photo-gallery">
                 {abbPhotos.map((photo, index) => (
-                  <div key={index} className="gallery-item" style={{ animationDelay: `${index * 0.1}s` }} onClick={() => setModalImage(photo)}>
-                    <img src={photo} alt={`ABB Campaign ${index + 1}`} className="gallery-image" />
+                  <div key={index} className="gallery-item" style={{ animationDelay: `${index * 0.1}s` }} onClick={() => setModalImage(photo.src)}>
+                    <img src={photo.src} alt={photo.alt} className="gallery-image" />
                     <div className="gallery-overlay"><span className="view-icon">🔍</span></div>
                   </div>
                 ))}
@@ -367,8 +376,8 @@ const AboutPage = () => {
                 </div>
                 <div className="photo-gallery mission-gallery portrait-gallery">
                   {moroccoPhotos.map((photo, index) => (
-                    <div key={index} className="gallery-item portrait-item" style={{ animationDelay: `${index * 0.1}s` }} onClick={() => setModalImage(photo)}>
-                      <img src={photo} alt={`Morocco Mission ${index + 1}`} className="gallery-image portrait-image" />
+                    <div key={index} className="gallery-item portrait-item" style={{ animationDelay: `${index * 0.1}s` }} onClick={() => setModalImage(photo.src)}>
+                      <img src={photo.src} alt={photo.alt} className="gallery-image portrait-image" />
                       <div className="gallery-overlay"><span className="view-icon">🔍</span></div>
                     </div>
                   ))}

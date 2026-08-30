@@ -54,28 +54,28 @@ const Cataracts = () => {
       title: 'WHAT IS A CATARACT?',
       content: 'A cataract is a common condition that causes vision loss due to clouding of the lens of the eye. Cloudiness develops as a result of protein buildup in the lens that prevents light from reaching the retina. Cataracts affect millions of people each year, including more than half of all Americans 60 years of age and older. The lens within the eye clouds naturally as we age, causing a gradual reduction of vision.',
       image: img1,
-      alt: 'Illustration of what a cataract is and how it affects the eye',
+      alt: "What a cataract is and how it clouds the eye's lens – cataract care in North Dartmouth, MA",
     },
     {
       tag: 'Causes',
       title: 'WHAT CAUSES CATARACTS?',
       content: 'While natural aging is the primary cause, there are numerous other factors that can lead to cataract development including injury, certain medications, illness, diabetes, excessive alcohol use, prolonged UV light exposure, smoking, family history, radiation exposure, and previous eye surgery. Understanding these risk factors helps in prevention and early detection.',
       image: img2,
-      alt: 'Causes and risk factors of cataract development',
+      alt: "Causes and risk factors of cataracts explained by optometrists in Southeastern MA",
     },
     {
       tag: 'Signs & Symptoms',
       title: 'SIGNS AND SYMPTOMS',
       content: 'Patients often experience no symptoms when cataracts first develop. As they progress, you may notice blurry or hazy vision, faded colors, double vision, poor vision in bright light, halos around lights, poor night vision, yellowish vision, or frequent changes in eyeglass prescriptions. Early detection through regular eye exams is crucial for timely treatment.',
       image: img3,
-      alt: 'Signs and symptoms of cataracts',
+      alt: "Signs and symptoms of cataracts, from glare to blurred vision, evaluated in North Attleboro, MA",
     },
     {
       tag: 'Treatment Options',
       title: 'TREATMENT OPTIONS',
       content: 'Early cataracts can sometimes be managed with non-surgical methods including new eyeglass prescriptions, anti-glare sunglasses, magnifying lenses, and stronger lighting. However, when cataracts begin to interfere with your ability to read, work, exercise or drive, surgery is recommended. Cataract surgery is a minimally invasive outpatient procedure using topical anesthesia in which the clouded natural lens is replaced with a clear artificial intraocular lens (IOL) that focuses light onto the retina. The procedure takes approximately 30 minutes or less. We refer patients to well-trained eye surgeons with whom we have decades-long relationships, ensuring optimal results with comprehensive pre and post-operative care.',
       image: img4,
-      alt: 'Cataract treatment options including surgery and non-surgical approaches',
+      alt: "Cataract surgery co-management and treatment options for South Coast MA patients",
     },
   ];
 

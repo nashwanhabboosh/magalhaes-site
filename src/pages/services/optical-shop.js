@@ -54,28 +54,28 @@ const OpticalShop = () => {
       title: 'COMPREHENSIVE OPTICAL SERVICES',
       content: <>Our practice features a full-service optical center with a wide array of eyeglass frames and contact lenses to suit every look and budget. We customize your prescription with the latest optical lens design to optimize your vision in every situation. With more than 900 different frame styles in stock, we offer choices from newest fashion and designer frames to less expensive value lines. Our full-service lab can prepare lenses for you while you wait. Our optical shop is conveniently located within <a href="https://www.lenscrafters.com" target="_blank" rel="noopener noreferrer">LensCrafters</a>, giving you access to an even wider selection of premium eyewear.</>,
       image: img1,
-      alt: 'Our full-service optical shop',
+      alt: "Full-service optical shop with eyeglasses and frames in North Dartmouth and North Attleboro, MA",
     },
     {
       tag: 'Lens Technology',
       title: 'PREMIUM LENS TECHNOLOGY',
       content: 'As authorized providers for Varilux, Zeiss and Hoya products, we offer the most technologically superior lens products available today. We feature special lens design options for computer users, office workers and students. Our variety includes multi-layer anti-reflective coating to minimize glare, ultraviolet blockers to protect your eye health, and Polaroid sun lenses for ultimate comfort and vision while outdoors.',
       image: img2,
-      alt: 'Premium lens technology from Varilux, Zeiss and Hoya',
+      alt: "Premium Varilux, Zeiss and Hoya lenses available at our North Attleboro, MA optical shop",
     },
     {
       tag: 'Choosing Frames',
       title: 'CHOOSING THE RIGHT FRAMES FOR YOU',
       content: 'When choosing eyeglass frames, the shape of your face is one of the most important aspects to consider. A patient with a square face may look most attractive in a rounded frame that provides curves, while a frame with a higher bridge and hinges can add the illusion of length. Skin, hair and eye coloring also play a factor — skin tones are either cool (blue or pink hue) or warm (yellow hue). If your overall coloring is cool, consider frames in dark tortoise, black, pink, blue or plum. For warm coloring, the best choices may be gold, red, camel, pale tortoise or green. Our staff is happy to analyze your coloring and help you find eyewear that enhances your appearance.',
       image: img3,
-      alt: 'Choosing the right eyeglass frames for your face shape and skin tone',
+      alt: "Choosing eyeglass frames for face shape and skin tone with opticians in North Dartmouth, MA",
     },
     {
       tag: 'Expert Guidance',
       title: 'EXPERT GUIDANCE & PERSONALIZED SERVICE',
       content: 'Our stylists and opticians have over 100 years of combined experience helping patients find eyewear that matches their appearance, personal taste, and visual needs. We take time to understand your lifestyle, preferences, and specific vision requirements to recommend the best options for you. We guarantee your eyewear with our no-risk 30-day warranty.',
       image: img4,
-      alt: 'Expert optical staff providing personalized eyewear guidance',
+      alt: "Licensed opticians providing personalized eyewear fittings for South Coast MA patients",
     },
   ];
 

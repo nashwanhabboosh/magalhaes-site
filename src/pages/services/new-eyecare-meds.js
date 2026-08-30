@@ -38,28 +38,28 @@ const NewEyecareMeds = () => {
       title: 'TYRVAYA - INNOVATIVE DRY EYE THERAPY',
       content: 'Introducing an innovative therapy for dry eyes! If your eyes are gritty and dry, you likely have dry eye disease. Tyrvaya is a new treatment proving effective for the signs and symptoms you are experiencing. Unlike traditional ointments, plugs, or eye drops, Tyrvaya awakens the eye\'s ability to produce moisture by utilizing a nasal spray system to stimulate your eye\'s natural tear production. Used twice daily as a spray, it stimulates the nerve that produces moisture, providing almost immediate relief.',
       image: img1,
-      alt: 'Tyrvaya nasal spray dry eye therapy',
+      alt: "Tyrvaya nasal spray dry eye therapy prescribed by ODs in North Dartmouth and North Attleboro, MA",
     },
     {
       tag: 'Miebo',
       title: 'MIEBO - ADVANCED LUBRICATING DROPS',
       content: 'Miebo is a lubricating eye drop that acts as medicine to improve the health of the surface of your eyes. Prescribed for dry eye and oil gland dysfunction, this medication targets the causes of moisture evaporation. It is preservative and steroid-free and may be effective for children under 18. Apply one drop four times daily, removing contact lenses before application. The Miebo website offers significant savings, and your eye doctor will work with your insurance company to check for coverage.',
       image: img2,
-      alt: 'Miebo lubricating eye drops for dry eye',
+      alt: "Miebo lubricating eye drops for dry eye relief, available in Dartmouth and North Attleboro, MA",
     },
     {
       tag: 'Xdemvy',
       title: 'XDEMVY - FDA-APPROVED DEMODEX TREATMENT',
       content: 'Xdemvy is the first FDA-approved treatment for Demodex blepharitis, a condition caused by eyelid mite infestation. These mites grow out of control and cause eye inflammation, redness, irritation, itchiness, and crusty, flaky collarettes around the base of the eyelashes. The treatment protocol is use for a full 6 weeks. The mites are sensitive to light, cannot survive without a host, and are contagious. Patients across all ages can get Demodex, making daily use of the medication important.',
       image: img3,
-      alt: 'Xdemvy treatment for Demodex blepharitis',
+      alt: "Xdemvy, the FDA-approved Demodex blepharitis treatment, offered in Southeastern MA",
     },
     {
       tag: 'Comprehensive Care',
       title: 'COMPREHENSIVE TREATMENT APPROACH',
       content: 'Traditional dry eye treatments included ointments, tiny plugs inserted into the corners of eyelids, and therapeutic lubricant eye drops. Now, advanced medications like Tyrvaya work by stimulating the trigeminal nerve to produce natural tears, while Miebo creates a protective barrier to prevent tear evaporation. Our doctors stay current with the latest breakthrough medications and will work with you to determine the best treatment plan for your specific condition. Whether you have dry eye disease, oil gland dysfunction, or Demodex blepharitis, we can prescribe appropriate medications and work with your insurance company for coverage. We provide ongoing monitoring to ensure your treatment is effective and adjust your care plan as needed.',
       image: img4,
-      alt: 'Comprehensive eyecare medication treatment approach',
+      alt: "Comprehensive dry eye and medical eye care treatment plans from our South Coast MA optometrists",
     },
   ];
 

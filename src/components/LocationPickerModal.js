@@ -1,18 +1,13 @@
 // LocationPickerModal.js
 import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import { locations as officeLocations } from '../data/locations';
 import './LocationPickerModal.css';
 
-const locations = [
-  {
-    name: 'North Attleboro',
-    scheduleUrl: 'https://www.lenscrafters.com/ScheduleExamView?catalogId=11651&clearExams=1&langId=-1&storeNumber=0546&storeId=10851&refid=hicButton#/steps/appointment-type'
-  },
-  {
-    name: 'Dartmouth',
-    scheduleUrl: 'https://www.lenscrafters.com/ScheduleExamView?catalogId=11651&clearExams=1&langId=-1&storeNumber=0488&storeId=10851&refid=hicButton#/steps/appointment-type'
-  }
-];
+const locations = officeLocations.map(({ shortName, scheduleUrl }) => ({
+  name: shortName,
+  scheduleUrl
+}));
 
 const LocationPickerModal = ({ isOpen, onClose }) => {
   // Close on Escape key

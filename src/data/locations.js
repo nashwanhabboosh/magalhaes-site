@@ -31,6 +31,8 @@ export const locations = [
     },
     phone: '508-717-0425',
     fax: '508-992-3239',
+    scheduleUrl:
+      'https://www.lenscrafters.com/ScheduleExamView?catalogId=11651&clearExams=1&langId=-1&storeNumber=0546&storeId=10851&refid=hicButton#/steps/appointment-type',
     hours: [
       { day: 'Monday', hours: '9:00 AM - 6:30 PM', isOpen: true },
       { day: 'Tuesday', hours: '9:00 AM - 6:30 PM', isOpen: true },
@@ -60,6 +62,8 @@ export const locations = [
     },
     phone: '508-717-0425',
     fax: '508-992-3239',
+    scheduleUrl:
+      'https://www.lenscrafters.com/ScheduleExamView?catalogId=11651&clearExams=1&langId=-1&storeNumber=0488&storeId=10851&refid=hicButton#/steps/appointment-type',
     hours: [
       { day: 'Monday', hours: '9:00 AM - 6:30 PM', isOpen: true },
       { day: 'Tuesday', hours: '9:00 AM - 6:30 PM', isOpen: true },

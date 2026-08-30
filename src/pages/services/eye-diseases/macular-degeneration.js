@@ -55,28 +55,28 @@ const MacularDegeneration = () => {
       title: 'WHAT IS MACULAR DEGENERATION?',
       content: 'Macular degeneration (AMD) is a leading cause of vision loss in people over the age of 50 and the leading cause of blindness in the United States for this age group. It affects the macula, the part of the retina responsible for crisp, detailed central vision needed for reading or driving. Dry (non-neovascular) AMD is the more common form, developing gradually from aging and thinning of macula tissues. Only about 10 percent of patients progress to the more advanced wet (neovascular) form, in which new blood vessels develop beneath the macula and leak blood and fluid — leading to permanent central vision damage and blind spots that can develop in as little as a few days or weeks.',
       image: img1,
-      alt: 'Macular degeneration and its effect on central vision',
+      alt: "Macular degeneration and its effect on central vision – AMD care in North Dartmouth, MA",
     },
     {
       tag: 'Symptoms & Detection',
       title: 'SYMPTOMS AND DETECTION',
       content: 'Dry AMD symptoms include gradual shadowy areas in central vision, fuzzy or distorted vision, difficulty seeing at night, difficulty reading in dim light, worsened visual acuity, and central vision loss. With wet AMD, patients may see straight lines as wavy. Your doctor can detect early signs before symptoms appear through regular eye exams and Amsler grid testing. We also use Ocular Computerized Tomography (OCT) to detect elevations and abnormalities in the retina. Regular comprehensive eye exams are crucial for early detection before permanent side effects occur.',
       image: img2,
-      alt: 'Elder patient receiving eye exam for macular degeneration detection',
+      alt: "Older adult receiving an eye exam for macular degeneration detection in North Attleboro, MA",
     },
     {
       tag: 'Causes & Risk Factors',
       title: 'CAUSES AND RISK FACTORS',
       content: 'Many cases result from aging and natural deterioration of eye tissue. Nearly half of AMD-related blindness cases are linked to a genetic deficiency in the complement factor H gene variant. Non-modifiable risk factors include age fifty or older, family history, Caucasian race, female gender, and lighter eye color. Modifiable risk factors include smoking, high cholesterol, diabetes, obesity, chronic sun exposure, high blood pressure, high fat diet, and certain drug side effects. Over 30 percent of adults over 75 have been diagnosed with advanced or intermediate AMD.',
       image: img3,
-      alt: 'Risk factors and prevention of macular degeneration',
+      alt: "Causes, risk factors and prevention of macular degeneration on the South Coast of MA",
     },
     {
       tag: 'Technology & Treatment',
       title: 'MACULOGIX TECHNOLOGY & TREATMENT',
       content: 'Maculogix is a revolutionary device that detects AMD three years prior to traditional diagnosis, allowing us to slow disease progression at the subclinical stage before significant damage occurs. Dr. Magalhaes and Associates are proud to bring this cutting-edge technology to the community. While there is no cure for AMD, several treatments help manage the condition and preserve vision. Intraocular anti-VEGF injections are often successful in stopping abnormal blood vessel growth in wet AMD, administered monthly. Photodynamic therapy effectively removes newly developing abnormal blood vessels. High-dose AREDS2 vitamins and mineral supplements slow progression in advanced cases. Continuous treatment is essential to prevent permanent vision loss.',
       image: img4,
-      alt: 'Doctor using Maculogix technology and providing AMD treatment',
+      alt: "MacuLogix dark adaptation testing and macular degeneration treatment in Southeastern MA",
     },
   ];
 
@@ -222,7 +222,7 @@ const MacularDegeneration = () => {
         <div className="practice-photo-banner">
           <img
             src={bioHeadsetImg}
-            alt="Doctor performing retinal examination with binocular indirect ophthalmoscope"
+            alt="Optometrist performing a dilated retinal exam with a binocular indirect ophthalmoscope in North Dartmouth, MA"
             className="practice-photo-banner-img"
           />
           <div className="practice-photo-banner-caption">
