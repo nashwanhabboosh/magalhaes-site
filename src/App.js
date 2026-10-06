@@ -1,5 +1,5 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { Suspense } from "react";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 
 // Components
 import Header from "./components/Header";
@@ -53,13 +53,26 @@ import DryEye from "./pages/services/eye-diseases/dry-eye";
 import Glaucoma from "./pages/services/eye-diseases/glaucoma";
 import MacularDegeneration from "./pages/services/eye-diseases/macular-degeneration";
 
+// Blog admin. Loaded only when someone opens /admin, so the post editor is
+// never part of what ordinary visitors download.
+const Admin = React.lazy(() => import("./pages/Admin/Admin"));
+
+// Renders the site header and footer everywhere except the blog admin,
+// which has its own layout.
+const SiteChrome = ({ children }) => {
+  const { pathname } = useLocation();
+  return pathname.startsWith("/admin") ? null : children;
+};
+
 function App() {
   return (
     <Router>
       {/* Components that appear on all pages */}
       <Seo />
       <ScrollToTop />
-      <Header />
+      <SiteChrome>
+        <Header />
+      </SiteChrome>
 
       {/* Page content changes based on URL */}
       <Routes>
@@ -77,6 +90,14 @@ function App() {
             page they share one route instead of being listed one by one. */}
         <Route path="/blog/" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
+        <Route
+          path="/admin/*"
+          element={
+            <Suspense fallback={null}>
+              <Admin />
+            </Suspense>
+          }
+        />
 
         <Route path="/location/north-attleboro-fashion-crossing" element={<NorthAttleboro />} />
         <Route path="/location/north-dartmouth" element={<NorthDartmouth />} />
@@ -111,7 +132,9 @@ function App() {
         <Route path="/services/eye-diseases/macular-degeneration" element={<MacularDegeneration />} />
       </Routes>
 
-      <Footer />
+      <SiteChrome>
+        <Footer />
+      </SiteChrome>
     </Router>
   );
 }

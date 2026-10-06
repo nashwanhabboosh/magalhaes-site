@@ -51,6 +51,20 @@ test('renders the supported elements', () => {
   );
 });
 
+test('keeps blank lines inside a post but drops them at the end', () => {
+  const html = renderBodyHtml(
+    doc(
+      paragraph(text('First')),
+      { type: 'paragraph' },
+      paragraph(text('Second')),
+      { type: 'paragraph' },
+      { type: 'paragraph', content: [] }
+    )
+  );
+  assert.equal(html, '<p>First</p><p><br></p><p>Second</p>');
+  assert.equal(renderBodyHtml(doc({ type: 'paragraph' })), '');
+});
+
 test('escapes text, so typed HTML is shown rather than run', () => {
   const html = renderBodyHtml(doc(paragraph(text('<script>alert("x")</script> & more'))));
   assert.equal(html, '<p>&lt;script&gt;alert(&quot;x&quot;)&lt;/script&gt; &amp; more</p>');

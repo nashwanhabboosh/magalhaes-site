@@ -51,6 +51,9 @@ const Seo = () => {
     // post has loaded.
     if (getBlogPostSlug(pathname)) return;
 
+    // The blog admin sets its own title (pages/Admin/Admin.js).
+    if (pathname.startsWith('/admin')) return;
+
     const seo = getSeoForPath(pathname);
     applySeo({
       title: seo?.title || DEFAULT_TITLE,

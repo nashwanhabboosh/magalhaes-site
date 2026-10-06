@@ -12,6 +12,7 @@ import './Blog.css';
 import AppointmentButton from '../../components/AppointmentButton';
 import { applySeo } from '../../components/Seo';
 import { formatPostDate } from './Blog';
+import { PostHero, PostArticle } from './PostView';
 import {
   getPostSeo,
   getCanonicalUrl,
@@ -94,33 +95,13 @@ const BlogPost = () => {
 
   return (
     <div className="blog-page">
-      {/* Hero Section */}
-      <section className="blog-hero blog-hero-post">
-        <div className="blog-hero-overlay"></div>
-        <div className="blog-hero-content">
-          {status === 'ready' && (
-            <span className="blog-hero-date">{formatPostDate(post.publishedAt)}</span>
-          )}
-          <h1 className="blog-hero-title blog-post-title">{heroTitle}</h1>
-        </div>
-        <div className="hero-wave">
-          <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M0,0 Q300,60 600,30 T1200,0 L1200,120 L0,120 Z" fill="#fafbfc"></path>
-          </svg>
-        </div>
-      </section>
+      <PostHero
+        title={heroTitle}
+        dateLabel={status === 'ready' ? formatPostDate(post.publishedAt) : null}
+      />
 
       <div className="blog-content">
-        {status === 'ready' && (
-          <article className="blog-article">
-            {post.coverImageUrl && (
-              <img className="blog-article-cover" src={post.coverImageUrl} alt={post.title} />
-            )}
-            {/* bodyHtml is built on the server from a fixed list of elements
-                (server/renderBody.js), never taken from the browser as HTML. */}
-            <div className="blog-body" dangerouslySetInnerHTML={{ __html: post.bodyHtml }} />
-          </article>
-        )}
+        {status === 'ready' && <PostArticle post={post} />}
 
         {status === 'missing' && (
           <p className="blog-message">

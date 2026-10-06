@@ -61,7 +61,9 @@ const renderNode = (node, depth) => {
     case 'text':
       return renderText(node);
     case 'paragraph':
-      return `<p>${renderChildren(node, depth)}</p>`;
+      // An empty paragraph is a blank line the author left on purpose.
+      // Without the <br> it would collapse to nothing on the page.
+      return `<p>${renderChildren(node, depth) || '<br>'}</p>`;
     case 'heading': {
       const level = Math.min(
         Math.max(Number(node.attrs?.level) || MIN_HEADING_LEVEL, MIN_HEADING_LEVEL),
@@ -96,5 +98,19 @@ const renderNode = (node, depth) => {
   }
 };
 
-export const renderBodyHtml = (doc) =>
-  doc && typeof doc === 'object' && doc.type === 'doc' ? renderChildren(doc, 0) : '';
+const isEmptyParagraph = (node) =>
+  node?.type === 'paragraph' && !(Array.isArray(node.content) && node.content.length > 0);
+
+export const renderBodyHtml = (doc) => {
+  if (!doc || typeof doc !== 'object' || doc.type !== 'doc') return '';
+
+  // The editor keeps an empty paragraph after a closing photo, list or
+  // quote so there is somewhere to keep typing. Blank lines at the very
+  // end of a post would only add empty space under it.
+  const content = Array.isArray(doc.content) ? [...doc.content] : [];
+  while (content.length > 0 && isEmptyParagraph(content[content.length - 1])) {
+    content.pop();
+  }
+
+  return renderChildren({ content }, 0);
+};
