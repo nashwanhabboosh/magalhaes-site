@@ -20,7 +20,7 @@ export default function Header() {
   
   const navItems = [
     'HOME', 'ABOUT', 'DOCTORS', 'SERVICES',
-    'PATIENT INFO', 'CAREERS', 'LOCATIONS', 'CONTACT US'
+    'PATIENT INFO', 'BLOG', 'CAREERS', 'LOCATIONS', 'CONTACT US'
   ];
   
   const dropdownItems = {

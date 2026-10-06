@@ -17,6 +17,8 @@ import Doctors from "./pages/Doctors/Doctors";
 import Locations from "./pages/Locations/Locations";
 import Resources from "./pages/PatientResources/PatientResources"
 import Sitemap from "./pages/Sitemap/Sitemap";
+import Blog from "./pages/Blog/Blog";
+import BlogPost from "./pages/Blog/BlogPost";
 
 import NorthAttleboro from "./pages/Locations/NorthAttleboro";
 import NorthDartmouth from "./pages/Locations/Dartmouth";
@@ -70,6 +72,12 @@ function App() {
         <Route path="/careers/" element={<Careers />} />
         <Route path="/patient-info/" element={<Resources />} />
         <Route path="/sitemap" element={<Sitemap />} />
+
+        {/* Blog. Posts come from the database, so unlike every other
+            page they share one route instead of being listed one by one. */}
+        <Route path="/blog/" element={<Blog />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
+
         <Route path="/location/north-attleboro-fashion-crossing" element={<NorthAttleboro />} />
         <Route path="/location/north-dartmouth" element={<NorthDartmouth />} />
 

@@ -431,3 +431,62 @@ button.action-link {
   font-weight: 600;
   font-family: 'DM Sans', -apple-system, sans-serif;
 }
+
+/* Desktop nav with nine items
+ *
+ * Between the mobile switch (992px, see MobileNav.css) and wide screens,
+ * the nav has to give up some spacing to stay on one line. The sticky
+ * header is the tightest, because it also carries the logo and the
+ * appointment button, so below 1180px it drops the logo and keeps the
+ * button. Everything here is scoped with min-width so it never touches
+ * the mobile layout, where the sticky header shows only the logo.
+ */
+.nav-link {
+  white-space: nowrap;
+}
+
+@media (min-width: 993px) and (max-width: 1320px) {
+  .header-sticky .nav-container {
+    gap: 1rem;
+  }
+
+  .header-sticky .nav-list {
+    gap: 0.25rem;
+  }
+
+  .header-sticky .nav-link {
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+  }
+}
+
+@media (min-width: 993px) and (max-width: 1180px) {
+  .header-sticky .nav-logo {
+    display: none;
+  }
+
+  .header-sticky .nav-container {
+    padding: 0 1rem;
+  }
+
+  .header-sticky .nav-list {
+    gap: 0;
+  }
+
+  .header-sticky .nav-link {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .header-sticky .nav-appointment-btn {
+    padding: 0.55rem 1rem;
+    font-size: 0.75rem;
+  }
+}
+
+@media (min-width: 993px) and (max-width: 1100px) {
+  .header-regular .nav-list {
+    gap: 0.25rem;
+  }
+}

@@ -233,6 +233,14 @@ export const seoByPath = {
       'Jacqueline Klombers, O.D. - Expert Eye Doctor & Vision Care Services | North Attleboro & Dartmouth MA',
     description:
       'Dr. Jacqueline Klombers, O.D., expert eye doctor providing comprehensive vision care services in North Attleboro & Dartmouth MA. Specialized in eye exams, vision correction, eye disease diagnosis, and personalized patient care using advanced optometric technology.'
+  },
+  // Blog index. Not from the SEO worksheets — written when the blog was
+  // added. Individual posts are not listed here; see getPostSeo() below.
+  '/blog': {
+    title:
+      'Eye Care Blog | Dr. Magalhaes and Associates | North Attleboro & Dartmouth MA',
+    description:
+      'Eye health articles from the optometrists at Dr. Magalhaes and Associates in North Attleboro & Dartmouth MA. Practical advice on eye exams, contact lenses, eye disease, and everyday vision care.'
   }
 };
 
@@ -257,3 +265,25 @@ export const getCanonicalUrl = (pathname) => {
   );
   return `${CANONICAL_ORIGIN}${path}${noSlash ? '' : '/'}`;
 };
+
+// --- Blog posts ----------------------------------------------------------
+//
+// Posts live in a database rather than in seoByPath, so their metadata is
+// built from the post itself. The middleware and pages/Blog/BlogPost.js
+// both use these helpers, so the served HTML and the running app agree.
+
+// Returns the post slug for a path like "/blog/my-post/", otherwise null.
+export const getBlogPostSlug = (pathname) => {
+  const match = normalizePath(pathname).match(/^\/blog\/([a-z0-9-]+)$/);
+  return match ? match[1] : null;
+};
+
+export const getPostSeo = (post) => ({
+  title: `${post.title} | Dr. Magalhaes and Associates`,
+  description: post.summary || DEFAULT_DESCRIPTION
+});
+
+// id of the <script type="application/json"> element in which the
+// middleware embeds the post, so the app can render it without a second
+// request.
+export const PRELOADED_POST_ELEMENT_ID = 'blog-post-data';

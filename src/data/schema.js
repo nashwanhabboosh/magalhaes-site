@@ -17,7 +17,7 @@
 // rendered on the page (a handoff hard requirement).
 
 import { locations } from './locations';
-import { CANONICAL_ORIGIN } from './seo';
+import { CANONICAL_ORIGIN, getCanonicalUrl } from './seo';
 
 const ORG_ID = `${CANONICAL_ORIGIN}/#organization`;
 const PERSON_ID = `${CANONICAL_ORIGIN}/doctors/john-magalhaes#person`;
@@ -332,4 +332,29 @@ export const getSchemaForPath = (path) => {
     default:
       return null;
   }
+};
+
+// Blog posts. Not part of the SEO handoff: one BlogPosting block per post
+// page, attributed to the practice (the organization defined on the
+// homepage) rather than to an individual, since posts may be written by
+// staff on a doctor's behalf.
+export const getPostSchema = (post) => {
+  const practice = {
+    '@type': 'MedicalOrganization',
+    '@id': ORG_ID,
+    name: 'Dr. Magalhaes and Associates, Inc.',
+    url: `${CANONICAL_ORIGIN}/`
+  };
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    ...(post.summary ? { description: post.summary } : {}),
+    ...(post.coverImageUrl ? { image: `${CANONICAL_ORIGIN}${post.coverImageUrl}` } : {}),
+    datePublished: post.publishedAt,
+    dateModified: post.updatedAt,
+    mainEntityOfPage: getCanonicalUrl(`/blog/${post.slug}`),
+    author: practice,
+    publisher: practice
+  };
 };

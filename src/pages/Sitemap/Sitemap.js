@@ -14,6 +14,7 @@ const mainPages = [
   { label: 'Home', to: '/' },
   { label: 'About', to: '/about/' },
   { label: 'Patient Info', to: '/patient-info/' },
+  { label: 'Blog', to: '/blog/' },
   { label: 'Careers', to: '/careers/' },
   { label: 'Contact Us', to: '/contact/' },
 ];

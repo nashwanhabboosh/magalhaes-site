@@ -14,34 +14,49 @@ import { useLocation } from 'react-router-dom';
 import {
   getSeoForPath,
   getCanonicalUrl,
+  getBlogPostSlug,
   DEFAULT_TITLE,
   DEFAULT_DESCRIPTION
 } from '../data/seo';
+
+// Writes a title, meta description and canonical link into the document
+// head. A null canonicalUrl removes the canonical link.
+export const applySeo = ({ title, description, canonicalUrl }) => {
+  document.title = title;
+
+  const meta = document.querySelector('meta[name="description"]');
+  if (meta) {
+    meta.setAttribute('content', description);
+  }
+
+  let canonical = document.querySelector('link[rel="canonical"]');
+  if (canonicalUrl) {
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonical);
+    }
+    canonical.setAttribute('href', canonicalUrl);
+  } else if (canonical) {
+    canonical.remove();
+  }
+};
 
 const Seo = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
+    // A blog post's metadata comes from the post itself, which this
+    // component does not have. pages/Blog/BlogPost.js sets it once the
+    // post has loaded.
+    if (getBlogPostSlug(pathname)) return;
+
     const seo = getSeoForPath(pathname);
-
-    document.title = seo?.title || DEFAULT_TITLE;
-
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) {
-      meta.setAttribute('content', seo?.description || DEFAULT_DESCRIPTION);
-    }
-
-    let canonical = document.querySelector('link[rel="canonical"]');
-    if (seo) {
-      if (!canonical) {
-        canonical = document.createElement('link');
-        canonical.setAttribute('rel', 'canonical');
-        document.head.appendChild(canonical);
-      }
-      canonical.setAttribute('href', getCanonicalUrl(pathname));
-    } else if (canonical) {
-      canonical.remove();
-    }
+    applySeo({
+      title: seo?.title || DEFAULT_TITLE,
+      description: seo?.description || DEFAULT_DESCRIPTION,
+      canonicalUrl: seo ? getCanonicalUrl(pathname) : null
+    });
   }, [pathname]);
 
   return null;
