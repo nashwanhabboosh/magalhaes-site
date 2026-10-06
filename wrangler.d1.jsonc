@@ -1,0 +1,29 @@
+// wrangler.d1.jsonc
+//
+// Wrangler config used ONLY for D1 database tooling: applying the SQL in
+// migrations/ and running the blog database locally. Pass it explicitly:
+//
+//   npx wrangler d1 migrations apply magalhaes-blog-preview --remote --config wrangler.d1.jsonc
+//
+// It is deliberately not named wrangler.jsonc. The live site is a
+// Cloudflare Pages project whose bindings are set in the dashboard, and
+// this file must not be picked up as the project's deploy config.
+//
+// The binding names here only label the two databases for Wrangler. In
+// the Pages project both are bound as `DB` (production and preview).
+{
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "magalhaes-blog",
+      "database_id": "57b7d96b-3edd-433f-bb12-5226a00da98e",
+      "migrations_dir": "migrations"
+    },
+    {
+      "binding": "DB_PREVIEW",
+      "database_name": "magalhaes-blog-preview",
+      "database_id": "2bc9b2e1-f0ce-43ed-981a-a09854f9f07a",
+      "migrations_dir": "migrations"
+    }
+  ]
+}

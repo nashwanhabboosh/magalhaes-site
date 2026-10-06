@@ -17,6 +17,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:server": "node --test \"server/**/*.test.js\"",
+    "dev:pages": "wrangler pages dev build --d1 DB=2bc9b2e1-f0ce-43ed-981a-a09854f9f07a --r2 MEDIA --compatibility-date=2026-06-27",
     "eject": "react-scripts eject",
     "deploy": "npm run build && wrangler deploy",
     "preview": "npm run build && wrangler dev"

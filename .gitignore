@@ -24,3 +24,7 @@ yarn-error.log*
 
 Video-backups
 secrets.txt
+
+# wrangler (local Cloudflare state and local-only settings)
+.wrangler
+.dev.vars
