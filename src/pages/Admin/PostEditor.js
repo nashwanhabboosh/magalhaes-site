@@ -30,7 +30,6 @@ import {
   ApiError
 } from './api';
 import { PostHero, PostArticle } from '../Blog/PostView';
-import { formatPostDate } from '../Blog/Blog';
 
 // Same limits the server enforces (server/posts.js).
 const MAX_TITLE_LENGTH = 200;
@@ -596,9 +595,11 @@ const PostForm = ({ post, onSaved }) => {
           <div className="blog-page">
             <PostHero
               title={preview.title || 'Untitled'}
-              dateLabel={formatPostDate(post?.publishedAt || new Date().toISOString())}
+              publishedAt={post?.publishedAt || new Date().toISOString()}
+              readingMinutes={preview.readingMinutes}
+              summary={preview.summary}
             />
-            <div className="blog-content">
+            <div className="blog-content blog-content-overlap">
               <PostArticle post={preview} />
             </div>
           </div>

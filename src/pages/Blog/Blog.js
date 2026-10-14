@@ -1,19 +1,25 @@
 // Blog.js
 //
-// The blog index at /blog/: every published post, newest first. Posts are
-// written in the admin and loaded from /api/posts
-// (functions/api/posts/index.js), so nothing here is hand-maintained.
+// The blog index at /blog/: every published post, newest first, with the
+// newest shown large at the top. Posts are written in the admin and loaded
+// from /api/posts (functions/api/posts/index.js), so nothing here is
+// hand-maintained.
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import './Blog.css';
+import BlogCta from './BlogCta';
+import { FeaturedPost, PostCard, PostCardSkeleton } from './PostCard';
+import { BookIcon } from './icons';
 
-// "2026-10-06T17:52:49Z" -> "October 6, 2026"
-export const formatPostDate = (isoDate) =>
-  new Date(isoDate).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
+// A short message in place of the posts: loading failed, or there are none.
+export const BlogNotice = ({ title, children }) => (
+  <div className="blog-notice">
+    <div className="blog-notice-icon">
+      <BookIcon />
+    </div>
+    {title && <h2 className="blog-notice-title">{title}</h2>}
+    <div className="blog-notice-text">{children}</div>
+  </div>
+);
 
 const Blog = () => {
   // null while loading
@@ -44,47 +50,55 @@ const Blog = () => {
   let content;
   if (failed) {
     content = (
-      <p className="blog-message">
-        We couldn't load our posts just now. Please try again in a moment.
-      </p>
+      <BlogNotice title="Our posts didn't load">
+        <p>We couldn't load our posts just now. Please try again in a moment.</p>
+      </BlogNotice>
     );
   } else if (posts === null) {
-    content = <p className="blog-message">Loading posts…</p>;
+    content = (
+      <>
+        <PostCardSkeleton featured />
+        <div className="blog-grid blog-grid-spaced">
+          <PostCardSkeleton />
+          <PostCardSkeleton />
+          <PostCardSkeleton />
+        </div>
+      </>
+    );
   } else if (posts.length === 0) {
     content = (
-      <p className="blog-message">
-        We haven't published any posts yet. Please check back soon.
-      </p>
+      <BlogNotice title="Coming soon">
+        <p>We haven't published any posts yet. Please check back soon.</p>
+      </BlogNotice>
     );
   } else {
+    const [latest, ...older] = posts;
     content = (
-      <div className="blog-grid">
-        {posts.map((post) => (
-          <Link key={post.slug} to={`/blog/${post.slug}/`} className="blog-card">
-            {post.coverImageUrl && (
-              // Decorative here: the title right below says what the post is.
-              <img className="blog-card-image" src={post.coverImageUrl} alt="" loading="lazy" />
-            )}
-            <div className="blog-card-body">
-              <span className="blog-card-date">{formatPostDate(post.publishedAt)}</span>
-              <h2 className="blog-card-title">{post.title}</h2>
-              {post.summary && <p className="blog-card-summary">{post.summary}</p>}
-              <span className="blog-card-more">
-                Read more <span className="blog-card-arrow">→</span>
-              </span>
+      <>
+        <FeaturedPost post={latest} />
+        {older.length > 0 && (
+          <section className="blog-more" aria-labelledby="blog-more-title">
+            <div className="blog-section-head">
+              <h2 id="blog-more-title" className="blog-section-title">More Articles</h2>
             </div>
-          </Link>
-        ))}
-      </div>
+            <div className="blog-grid">
+              {older.map((post) => (
+                <PostCard key={post.slug} post={post} />
+              ))}
+            </div>
+          </section>
+        )}
+      </>
     );
   }
 
   return (
     <div className="blog-page">
       {/* Hero Section */}
-      <section className="blog-hero">
+      <section className="blog-hero blog-hero-index">
         <div className="blog-hero-overlay"></div>
         <div className="blog-hero-content">
+          <span className="blog-hero-badge">Eye Health Insights</span>
           <h1 className="blog-hero-title">
             Our <span className="highlight">Blog</span>
           </h1>
@@ -100,7 +114,9 @@ const Blog = () => {
         </div>
       </section>
 
-      <div className="blog-content">{content}</div>
+      <div className="blog-content blog-content-overlap">{content}</div>
+
+      <BlogCta />
     </div>
   );
 };

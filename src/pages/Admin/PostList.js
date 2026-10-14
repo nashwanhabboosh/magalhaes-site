@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { listPosts, SignedOutError } from './api';
 import { useAdmin } from './adminContext';
-import { formatPostDate } from '../Blog/Blog';
+import { formatPostDate } from '../Blog/PostView';
 
 const PostList = () => {
   const { reportSignedOut } = useAdmin();

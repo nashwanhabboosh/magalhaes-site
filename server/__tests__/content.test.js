@@ -10,7 +10,12 @@ import assert from 'node:assert/strict';
 import { renderBodyHtml } from '../renderBody.js';
 import { slugify } from '../slug.js';
 import { isMediaKey, isMediaUrl, matchesImageSignature, newMediaKey } from '../media.js';
-import { parsePostInput, parsePostId, MAX_TITLE_LENGTH } from '../posts.js';
+import {
+  parsePostInput,
+  parsePostId,
+  readingMinutesForHtml,
+  MAX_TITLE_LENGTH
+} from '../posts.js';
 
 const KEY = 'blog/2026/10/3f2a9c1e-5b7d-4e8a-9c21-7d4e5f6a8b90.jpg';
 
@@ -233,4 +238,12 @@ test('reads post ids from URL segments', () => {
   assert.equal(parsePostId('12abc'), null);
   assert.equal(parsePostId('1 OR 1=1'), null);
   assert.equal(parsePostId(undefined), null);
+});
+
+test('estimates reading time from the post body, never below one minute', () => {
+  const words = (count) => `<p>${Array(count).fill('word').join(' ')}</p>`;
+  assert.equal(readingMinutesForHtml(''), 1);
+  assert.equal(readingMinutesForHtml(words(50)), 1);
+  assert.equal(readingMinutesForHtml(words(1000)), 5);
+  assert.equal(readingMinutesForHtml(words(500) + words(500)), 5);
 });

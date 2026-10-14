@@ -7,7 +7,7 @@
 //
 // Sign-in is enforced by ./_middleware.js.
 
-import { parsePostInput } from '../../../server/posts.js';
+import { parsePostInput, readingMinutesForHtml } from '../../../server/posts.js';
 import { mediaUrl } from '../../../server/media.js';
 import { json, readJsonObject } from '../../../server/http.js';
 
@@ -23,7 +23,8 @@ export async function onRequestPost(context) {
       title: values.title,
       summary: values.summary,
       coverImageUrl: values.coverImage ? mediaUrl(values.coverImage) : null,
-      bodyHtml: values.bodyHtml
+      bodyHtml: values.bodyHtml,
+      readingMinutes: readingMinutesForHtml(values.bodyHtml)
     }
   });
 }

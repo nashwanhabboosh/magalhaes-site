@@ -56,17 +56,35 @@ export function parsePostInput(data) {
 export const parsePostId = (value) =>
   /^[1-9]\d{0,14}$/.test(String(value)) ? Number(value) : null;
 
+// --- Reading time --------------------------------------------------------
+//
+// Shown next to each post's date ("4 min read"). The number of spaces in
+// a post's HTML stands in for its word count: close enough for this, and
+// SQLite can count them itself, so the post list doesn't have to load
+// every post body. SPACE_COUNT_SQL and readingMinutesForHtml() must count
+// the same way, or a post's preview could disagree with the public page.
+
+const WORDS_PER_MINUTE = 200;
+const SPACE_COUNT_SQL = `length(body_html) - length(replace(body_html, ' ', ''))`;
+
+const readingMinutes = (spaceCount) =>
+  Math.max(1, Math.round((Number(spaceCount) || 0) / WORDS_PER_MINUTE));
+
+export const readingMinutesForHtml = (html) => readingMinutes(html.split(' ').length - 1);
+
 // --- Output shapes -------------------------------------------------------
 
 const coverImageUrl = (row) => (row.cover_image ? mediaUrl(row.cover_image) : null);
 
+// `row.space_count` comes from SPACE_COUNT_SQL in the public queries.
 const toPublicSummary = (row) => ({
   slug: row.slug,
   title: row.title,
   summary: row.summary,
   coverImageUrl: coverImageUrl(row),
   publishedAt: row.published_at,
-  updatedAt: row.updated_at
+  updatedAt: row.updated_at,
+  readingMinutes: readingMinutes(row.space_count)
 });
 
 const toPublicPost = (row) => ({
@@ -99,7 +117,8 @@ const toAdminPost = (row) => ({
 export async function listPublishedPosts(db) {
   const { results } = await db
     .prepare(
-      `SELECT slug, title, summary, cover_image, published_at, updated_at
+      `SELECT slug, title, summary, cover_image, published_at, updated_at,
+              ${SPACE_COUNT_SQL} AS space_count
          FROM posts
         WHERE status = 'published'
         ORDER BY published_at DESC, id DESC`
@@ -110,7 +129,11 @@ export async function listPublishedPosts(db) {
 
 export async function getPublishedPostBySlug(db, slug) {
   const row = await db
-    .prepare(`SELECT * FROM posts WHERE slug = ?1 AND status = 'published'`)
+    .prepare(
+      `SELECT *, ${SPACE_COUNT_SQL} AS space_count
+         FROM posts
+        WHERE slug = ?1 AND status = 'published'`
+    )
     .bind(slug)
     .first();
   return row ? toPublicPost(row) : null;
