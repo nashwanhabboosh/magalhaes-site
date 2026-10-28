@@ -7,41 +7,8 @@
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
-import { DatabaseSync } from 'node:sqlite';
 import { createPost, parsePostInput, publishPost } from '../posts.js';
-
-// D1 refuses LIKE patterns longer than this many bytes.
-const D1_LIKE_PATTERN_LIMIT = 50;
-
-const SCHEMA = readFileSync(
-  new URL('../../migrations/0001_create_posts.sql', import.meta.url),
-  'utf8'
-);
-
-// A stand-in for the D1 binding: the same prepare/bind/first/all calls,
-// backed by Node's built-in SQLite.
-const openTestDb = () => {
-  const sqlite = new DatabaseSync(':memory:');
-  sqlite.limits.likePatternLength = D1_LIKE_PATTERN_LIMIT;
-  sqlite.exec(SCHEMA);
-  return {
-    prepare(sql) {
-      const statement = sqlite.prepare(sql);
-      let params = [];
-      const bound = {
-        bind: (...values) => {
-          params = values;
-          return bound;
-        },
-        first: async () => statement.get(...params) ?? null,
-        all: async () => ({ results: statement.all(...params) }),
-        run: async () => statement.run(...params)
-      };
-      return bound;
-    }
-  };
-};
+import { openTestDb } from './testDb.js';
 
 // Creates a draft with this title, publishes it and returns its slug.
 const publishNew = async (db, title) => {

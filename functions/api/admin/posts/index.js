@@ -7,6 +7,7 @@
 // Sign-in is enforced by ../_middleware.js.
 
 import { listAllPosts, createPost, parsePostInput } from '../../../../server/posts.js';
+import { findMissingPhoto } from '../../../../server/postMedia.js';
 import { json, readJsonObject } from '../../../../server/http.js';
 
 export async function onRequestGet(context) {
@@ -21,6 +22,9 @@ export async function onRequestPost(context) {
 
   const { values, error } = parsePostInput(input);
   if (error) return json({ error }, 400);
+
+  const missing = await findMissingPhoto(env.MEDIA, values);
+  if (missing) return json({ error: missing }, 400);
 
   // The author is whoever is signed in, never a value from the request.
   const post = await createPost(env.DB, values, data.user.email);

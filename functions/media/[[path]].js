@@ -5,8 +5,9 @@
 // shape the upload function creates (blog/<year>/<month>/<uuid>.<ext>) are
 // served, so nothing else in the bucket is reachable through this route.
 //
-// A key is never reused for a different file, so browsers are told they
-// can keep each photo for a year.
+// Browsers may keep each photo for a day. A key is never reused for a
+// different file, so longer would be safe, but a photo deleted from a
+// post (see server/postMedia.js) should stop showing soon after.
 
 import { isMediaKey } from '../../server/media.js';
 
@@ -24,7 +25,9 @@ export async function onRequestGet(context) {
   return new Response(object.body, {
     headers: {
       'Content-Type': object.httpMetadata?.contentType || 'application/octet-stream',
-      'Cache-Control': 'public, max-age=31536000, immutable',
+      // Browsers must take the type above at its word, never guess another.
+      'X-Content-Type-Options': 'nosniff',
+      'Cache-Control': 'public, max-age=86400',
       'ETag': object.httpEtag
     }
   });

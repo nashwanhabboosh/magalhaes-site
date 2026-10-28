@@ -16,10 +16,18 @@ export const IMAGE_TYPES = {
 // near this size is not a normal upload.
 export const MAX_IMAGE_BYTES = 5 * 1024 * 1024;
 
-const KEY_PATTERN =
-  /^blog\/\d{4}\/\d{2}\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\.(jpg|png|webp)$/;
+// One image key, as regular expression source for the two patterns below.
+const KEY_SOURCE =
+  String.raw`blog/\d{4}/\d{2}/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\.(?:jpg|png|webp)`;
+
+const KEY_PATTERN = new RegExp(`^${KEY_SOURCE}$`);
 
 const MEDIA_PREFIX = '/media/';
+
+const MEDIA_URL_IN_TEXT = new RegExp(`${MEDIA_PREFIX}(${KEY_SOURCE})`, 'g');
+
+// hasOwn, so names every object inherits ("constructor") don't count.
+export const isImageType = (contentType) => Object.hasOwn(IMAGE_TYPES, contentType);
 
 export const isMediaKey = (key) => typeof key === 'string' && KEY_PATTERN.test(key);
 
@@ -29,6 +37,11 @@ export const isMediaUrl = (url) =>
   typeof url === 'string' &&
   url.startsWith(MEDIA_PREFIX) &&
   isMediaKey(url.slice(MEDIA_PREFIX.length));
+
+// The keys of every /media/ address in a piece of text, such as a post's
+// stored body.
+export const mediaKeysInText = (text) =>
+  new Set(Array.from(String(text ?? '').matchAll(MEDIA_URL_IN_TEXT), (match) => match[1]));
 
 export const newMediaKey = (contentType, date = new Date()) => {
   const year = date.getUTCFullYear();

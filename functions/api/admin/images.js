@@ -9,7 +9,7 @@
 // Sign-in is enforced by ./_middleware.js.
 
 import {
-  IMAGE_TYPES,
+  isImageType,
   MAX_IMAGE_BYTES,
   matchesImageSignature,
   newMediaKey,
@@ -23,7 +23,7 @@ export async function onRequestPost(context) {
   const { request, env } = context;
 
   const contentType = request.headers.get('Content-Type') || '';
-  if (!IMAGE_TYPES[contentType]) {
+  if (!isImageType(contentType)) {
     return json({ error: 'Photos must be JPG, PNG or WebP files.' }, 415);
   }
 

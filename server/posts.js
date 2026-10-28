@@ -256,3 +256,27 @@ export async function deletePost(db, id) {
   const result = await db.prepare(`DELETE FROM posts WHERE id = ?1`).bind(id).run();
   return result.meta.changes > 0;
 }
+
+// --- Photos --------------------------------------------------------------
+//
+// Used by server/postMedia.js to work out when a photo can be deleted.
+
+// The fields of a post that can refer to photos, or null if there is no
+// post with that id.
+export async function getPostPhotoFields(db, id) {
+  const row = await db
+    .prepare(`SELECT cover_image, body_json FROM posts WHERE id = ?1`)
+    .bind(id)
+    .first();
+  return row ? { coverImage: row.cover_image, bodyJson: row.body_json } : null;
+}
+
+// True if any post uses the photo, as its cover or anywhere in its body.
+// instr(), not LIKE: see findFreeSlug() above.
+export async function isPhotoInUse(db, key) {
+  const row = await db
+    .prepare(`SELECT 1 FROM posts WHERE cover_image = ?1 OR instr(body_json, ?2) > 0 LIMIT 1`)
+    .bind(key, mediaUrl(key))
+    .first();
+  return Boolean(row);
+}

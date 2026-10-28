@@ -7,7 +7,7 @@
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { verifyAccessToken, AccessError } from '../access.js';
+import { verifyAccessToken, isAccessProtectedHost, AccessError } from '../access.js';
 
 const AUD = 'test-audience-tag';
 const NOW = Date.UTC(2026, 9, 6, 12, 0, 0);
@@ -67,8 +67,8 @@ const setup = async () => {
     exp: NOW_SECONDS + 3600,
     ...overrides
   });
-  const verify = (token) =>
-    verifyAccessToken(token, { teamDomain, audiences: [AUD], fetchImpl, now: NOW });
+  const verify = (token, now = NOW) =>
+    verifyAccessToken(token, { teamDomain, audiences: [AUD], fetchImpl, now });
   return { teamDomain, signer, certs, fetched, payload, verify };
 };
 
@@ -87,17 +87,68 @@ test('reuses the signing keys instead of fetching them for every request', async
 });
 
 test('refuses a missing or malformed token', async () => {
-  const { verify } = await setup();
+  const { signer, verify } = await setup();
   await assert.rejects(verify(null), AccessError);
   await assert.rejects(verify(''), AccessError);
   await assert.rejects(verify('only.two'), AccessError);
   await assert.rejects(verify('not!base64.not!base64.not!base64'), AccessError);
+  // Valid JSON that isn't an object.
+  await assert.rejects(verify(`${encodeJson(null)}.${encodeJson(null)}.AAAA`), AccessError);
+  await assert.rejects(verify(`${encodeJson(42)}.${encodeJson({})}.AAAA`), AccessError);
+  // Correctly signed, so only the shape check can refuse it.
+  await assert.rejects(verify(await signer.sign(null)), { message: 'Malformed token' });
 });
 
 test('refuses a token meant for a different Access application', async () => {
   const { signer, payload, verify } = await setup();
   const token = await signer.sign(payload({ aud: ['some-other-application'] }));
   await assert.rejects(verify(token), { message: 'Wrong audience' });
+});
+
+test('refuses a token with no audience', async () => {
+  const { signer, payload, verify } = await setup();
+  const token = await signer.sign(payload({ aud: undefined }));
+  await assert.rejects(verify(token), { message: 'Wrong audience' });
+});
+
+test('refuses every token when no audience is configured', async () => {
+  const { signer, payload, teamDomain, fetched } = await setup();
+  const fetchImpl = async () => {
+    fetched.push('certs');
+    return new Response('{"keys":[]}');
+  };
+  const noAudience = await signer.sign(payload({ aud: undefined }));
+  const valid = await signer.sign(payload());
+  // The ACCESS_AUD variable missing, empty, or not passed at all.
+  for (const options of [{ audiences: [undefined] }, { audiences: [''] }, { audiences: [] }, {}]) {
+    for (const token of [noAudience, valid, null]) {
+      await assert.rejects(
+        verifyAccessToken(token, { teamDomain, fetchImpl, now: NOW, ...options }),
+        (err) => !(err instanceof AccessError) && /ACCESS_AUD/.test(err.message)
+      );
+    }
+  }
+  assert.equal(fetched.length, 0);
+});
+
+test('treats only addresses behind Access as admin addresses', () => {
+  for (const host of [
+    'www.lenscraftersdoctor.com',
+    'blog-system.magalhaes-site.pages.dev',
+    '3f2a9c1e.magalhaes-site.pages.dev'
+  ]) {
+    assert.ok(isAccessProtectedHost(host), host);
+  }
+  for (const host of [
+    'magalhaes-site.pages.dev',
+    'lenscraftersdoctor.com',
+    'evilmagalhaes-site.pages.dev',
+    'www.lenscraftersdoctor.com.evil.example',
+    'magalhaes-site.pages.dev.evil.example',
+    'localhost'
+  ]) {
+    assert.ok(!isAccessProtectedHost(host), host);
+  }
 });
 
 test('refuses a token issued by a different Access team', async () => {
@@ -140,9 +191,28 @@ test('refuses a token with no email, such as a service token', async () => {
 });
 
 test('refuses an unknown key id after one fresh fetch of the keys', async () => {
-  const { payload, verify, fetched } = await setup();
+  const { signer, payload, verify, fetched } = await setup();
+  await verify(await signer.sign(payload()));
+
   const stranger = await makeSigner('key-unknown');
-  await assert.rejects(verify(await stranger.sign(payload())), { message: 'Unknown signing key' });
+  await assert.rejects(verify(await stranger.sign(payload()), NOW + 61000), {
+    message: 'Unknown signing key'
+  });
+  assert.equal(fetched.length, 2);
+});
+
+test('fetches the keys again at most once a minute for unknown key ids', async () => {
+  const { signer, payload, verify, fetched } = await setup();
+  await verify(await signer.sign(payload()));
+
+  const stranger = await makeSigner('key-unknown');
+  const token = await stranger.sign(payload());
+  for (const later of [1000, 2000, 59000]) {
+    await assert.rejects(verify(token, NOW + later), { message: 'Unknown signing key' });
+  }
+  assert.equal(fetched.length, 1);
+
+  await assert.rejects(verify(token, NOW + 61000), { message: 'Unknown signing key' });
   assert.equal(fetched.length, 2);
 });
 
@@ -152,7 +222,7 @@ test('picks up rotated signing keys', async () => {
 
   const rotated = await makeSigner('key-2');
   certs.keys = [rotated.jwk];
-  const user = await verify(await rotated.sign(payload()));
+  const user = await verify(await rotated.sign(payload()), NOW + 61000);
 
   assert.equal(user.email, 'doctor@example.com');
   assert.equal(fetched.length, 2);

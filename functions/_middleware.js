@@ -11,7 +11,8 @@
 //     on the four pages specified in the SEO schema handoff)
 //
 // It also 301-redirects the bare hostname to the canonical
-// www.lenscraftersdoctor.com so only one host is indexed.
+// www.lenscraftersdoctor.com so only one host is indexed, and stops the
+// blog admin pages from being framed by other sites.
 //
 // Blog post pages (/blog/<slug>) are handled separately, because posts
 // live in the D1 database rather than in src/data/seo.js: see
@@ -52,6 +53,20 @@ const withoutCaching = (response, status) => {
   headers.delete('Last-Modified');
   headers.set('Cache-Control', 'no-store');
   return new Response(response.body, { status, headers });
+};
+
+// Blog admin pages. Case-insensitive because the app's router is, so
+// /Admin/ opens the admin too.
+const isAdminPath = (path) => /^\/admin(\/|$)/i.test(path);
+
+// Copy of an admin page that browsers refuse to show inside another
+// site's frame, where a disguised page could trick a signed-in author into
+// clicking Delete or Publish.
+const withoutFraming = (response) => {
+  const headers = new Headers(response.headers);
+  headers.set('X-Frame-Options', 'DENY');
+  headers.set('Content-Security-Policy', "frame-ancestors 'none'");
+  return new Response(response.body, { status: response.status, headers });
 };
 
 // Blog post page: looks the post up by its slug and writes it into the
@@ -150,6 +165,9 @@ export async function onRequest(context) {
   if (!contentType.includes('text/html')) return response;
 
   const path = normalizePath(url.pathname === '/index.html' ? '/' : url.pathname);
+
+  // The admin has no SEO metadata to add, only the framing headers.
+  if (isAdminPath(path)) return withoutFraming(response);
 
   const postSlug = getBlogPostSlug(path);
   if (postSlug) return renderBlogPost(context, response, path, postSlug);

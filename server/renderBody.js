@@ -27,16 +27,23 @@ const MARK_TAGS = {
   code: 'code'
 };
 
+// Browsers drop tabs and line breaks from addresses, so "/<tab>/x.example"
+// would pass as a page on this site and then lead to "//x.example".
+const CONTROL_CHARACTERS = /[\u0000-\u001f\u007f]/;
+
 // Web, email and phone links, plus links to pages on this site. Rules out
 // javascript: and every other scheme.
 const isSafeHref = (href) =>
   typeof href === 'string' &&
+  !CONTROL_CHARACTERS.test(href) &&
   (/^(https?:\/\/|mailto:|tel:)/i.test(href) || /^\/(?![/\\])/.test(href));
 
 const renderText = (node) => {
   let html = escapeHtml(node.text || '');
   for (const mark of Array.isArray(node.marks) ? node.marks : []) {
-    const tag = mark && MARK_TAGS[mark.type];
+    // hasOwn, so names every object inherits ("constructor", "toString")
+    // are not mistaken for tags on the list.
+    const tag = mark && Object.hasOwn(MARK_TAGS, mark.type) && MARK_TAGS[mark.type];
     if (tag) {
       html = `<${tag}>${html}</${tag}>`;
     } else if (mark && mark.type === 'link' && isSafeHref(mark.attrs?.href)) {

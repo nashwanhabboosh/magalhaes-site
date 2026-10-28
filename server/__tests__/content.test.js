@@ -9,7 +9,14 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { renderBodyHtml } from '../renderBody.js';
 import { slugify } from '../slug.js';
-import { isMediaKey, isMediaUrl, matchesImageSignature, newMediaKey } from '../media.js';
+import {
+  isImageType,
+  isMediaKey,
+  isMediaUrl,
+  matchesImageSignature,
+  mediaKeysInText,
+  newMediaKey
+} from '../media.js';
 import {
   parsePostInput,
   parsePostId,
@@ -86,6 +93,11 @@ test('keeps the text of unknown elements but drops the elements', () => {
   assert.equal(html, 'alert(1)<p>safe</p>');
 });
 
+test('ignores mark names that every JavaScript object inherits', () => {
+  const marks = ['constructor', 'toString', '__proto__', 'hasOwnProperty'].map((type) => ({ type }));
+  assert.equal(renderBodyHtml(doc(paragraph(text('x', marks)))), '<p>x</p>');
+});
+
 test('keeps body headings between h2 and h4', () => {
   const heading = (level) => ({ type: 'heading', attrs: { level }, content: [text('T')] });
   assert.equal(renderBodyHtml(doc(heading(1))), '<h2>T</h2>');
@@ -113,6 +125,10 @@ test('drops links with unsafe addresses but keeps their text', () => {
     'data:text/html,<script>alert(1)</script>',
     '//evil.example',
     '/\\evil.example',
+    // Browsers drop tabs and line breaks, which would leave "//evil.example".
+    '/\t/evil.example',
+    '/\n/evil.example',
+    'https://a.example/\u0000',
     undefined,
     42
   ]) {
@@ -182,6 +198,32 @@ test('recognises only the image keys the upload function creates', () => {
   assert.ok(!isMediaKey(null));
   assert.ok(isMediaUrl(`/media/${KEY}`));
   assert.ok(!isMediaUrl(`https://evil.example/media/${KEY}`));
+});
+
+test('finds every photo address in a stored post body', () => {
+  const other = 'blog/2025/01/aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee.webp';
+  const body = JSON.stringify({
+    type: 'doc',
+    content: [
+      { type: 'image', attrs: { src: `/media/${KEY}` } },
+      { type: 'image', attrs: { src: `/media/${KEY}` } },
+      { type: 'image', attrs: { src: `/media/${other}` } },
+      { type: 'image', attrs: { src: 'https://evil.example/media/blog/x.jpg' } },
+      { type: 'text', text: 'blog/2026/10/not-a-media-address.jpg' }
+    ]
+  });
+  assert.deepEqual([...mediaKeysInText(body)], [KEY, other]);
+  assert.deepEqual([...mediaKeysInText('')], []);
+  assert.deepEqual([...mediaKeysInText(null)], []);
+});
+
+test('accepts only JPEG, PNG and WebP uploads', () => {
+  assert.ok(isImageType('image/jpeg'));
+  assert.ok(isImageType('image/png'));
+  assert.ok(isImageType('image/webp'));
+  for (const type of ['image/svg+xml', 'text/html', '', 'constructor', 'toString', '__proto__']) {
+    assert.ok(!isImageType(type), `type: ${type}`);
+  }
 });
 
 test('checks that an upload really is the image type it claims', () => {
