@@ -199,11 +199,12 @@ export async function updatePost(db, id, values) {
 }
 
 // Picks `base`, or `base-2`, `base-3`... if earlier posts already use it.
-// `base` comes from slugify(), so it contains no LIKE wildcards.
+// Matches the start of each slug with substr(), not LIKE: D1 refuses LIKE
+// patterns over 50 bytes, and slugify() allows slugs of up to 80.
 const findFreeSlug = async (db, base) => {
   const { results } = await db
-    .prepare(`SELECT slug FROM posts WHERE slug = ?1 OR slug LIKE ?2`)
-    .bind(base, `${base}-%`)
+    .prepare(`SELECT slug FROM posts WHERE slug = ?1 OR substr(slug, 1, length(?2)) = ?2`)
+    .bind(base, `${base}-`)
     .all();
   const taken = new Set(results.map((row) => row.slug));
   if (!taken.has(base)) return base;
