@@ -8,6 +8,8 @@
 // Browsers may keep each photo for a day. A key is never reused for a
 // different file, so longer would be safe, but a photo deleted from a
 // post (see server/postMedia.js) should stop showing soon after.
+// Cloudflare's own cache in front of www would otherwise keep it for that
+// same day, so it is told separately to keep a photo for five minutes.
 
 import { isMediaKey } from '../../server/media.js';
 
@@ -28,6 +30,8 @@ export async function onRequestGet(context) {
       // Browsers must take the type above at its word, never guess another.
       'X-Content-Type-Options': 'nosniff',
       'Cache-Control': 'public, max-age=86400',
+      // Read only by Cloudflare's cache, which then ignores Cache-Control.
+      'Cloudflare-CDN-Cache-Control': 'max-age=300',
       'ETag': object.httpEtag
     }
   });
